@@ -4,6 +4,7 @@
 //This Is A Beast Engine File Which Has The License Apache 2.0
 
 #include "Init.h"
+#include <iostream>
 #include "TextureManager.h"
 #include "RenderText.h"
 #include "Logger.h"
@@ -11,7 +12,7 @@
 #include "Scene.h"
 #include "BeastGui.h"
 #include "ErrorReporter.h"
-#include <iostream>
+#include "BeastGui.h"
 
 constexpr int ScreenWidth = 1080;
 constexpr int ScreenHeight = 720;
@@ -21,6 +22,8 @@ Scene scene;
 SDL_Renderer* Init::Renderer = nullptr;
 
 SDL_Event Init::Event;
+
+BeastGui beastgui;
 
 void Init::Init_SDL2()
 {
@@ -63,10 +66,6 @@ void Init::Init_SDL2()
 			return;
 		}
 
-		SDL_GetWindowSize(Window, &CWindowWidth, &HWindowHeight);
-
-		SDL_RenderSetLogicalSize(Renderer, HWindowHeight, HWindowHeight);
-
 		m_IsRunning = true;
 	}
 	else
@@ -75,6 +74,12 @@ void Init::Init_SDL2()
 		ErrorReporter::LogMessage("Error", SDL_GetError());
 		return;
 	}
+
+	ErrorReporter::LogMessage("Info", "Initializing GUI");
+
+	beastgui.Init();
+
+	ErrorReporter::LogMessage("Info", "Initialized GUI");
 
 	scene.Init();
 
@@ -85,9 +90,9 @@ void Init::Load()
 {
 	ErrorReporter::LogMessage("Info", "Loading Files And Other Tasks");
 
-	RenderText::Load();
-
 	ErrorReporter::LogMessage("Info", "Loading GUI");
+	
+	beastgui.Load();
 
 	ErrorReporter::LogMessage("Info", "Successfully Loaded GUI");
 
@@ -116,17 +121,15 @@ void Init::Events()
 
 void Init::Update()
 {
-	SDL_GetWindowSize(Window, &CWindowWidth, &HWindowHeight);
-
-	SDL_RenderSetLogicalSize(Renderer, CWindowWidth, HWindowHeight);
-
 	scene.Update();
 }
 
 void Init::Draw()
 {
 	SDL_RenderClear(Renderer);
+
 	scene.Draw();
+
 	SDL_RenderPresent(Renderer);
 }
 
@@ -138,6 +141,6 @@ void Init::Clean()
 	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);
 
-	ErrorReporter::Clean();
 	ErrorReporter::LogMessage("Info", "Beast Engine Is Clean");
+	ErrorReporter::Clean();
 }

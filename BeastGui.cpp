@@ -1,0 +1,101 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+#include "BeastGui.h"
+#include "RenderText.h"
+#include "TextureManager.h"
+
+void BeastGui::Init()
+{
+
+}
+
+void BeastGui::Load()
+{
+	RenderText::Load();
+}
+
+void BeastGui::DrawRect(SDL_Rect* Rect, SDL_Colour Colour)
+{
+	SDL_SetRenderDrawColor(Init::Renderer, Colour.r, Colour.g, Colour.b, Colour.a);
+
+	SDL_RenderDrawRect(Init::Renderer, Rect);
+	SDL_RenderFillRect(Init::Renderer, Rect);
+
+	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
+}
+
+int BeastGui::UpdateMenuBar(float Width, float Height)
+{
+	//Menu Bar Position Is Expected To Be 0 In Position And Width And Height Are Given In The Main Engine File Width And Height Needs To Be Scaled With The Application Sizes
+	SDL_Rect MenuBarRect = { 0, 0, Width, 50 };
+
+	SDL_Colour MenuBarColour;
+	MenuBarColour.r = 128;
+	MenuBarColour.g = 128;
+	MenuBarColour.b = 128;
+	MenuBarColour.a = 255;
+
+	DrawRect(&MenuBarRect, MenuBarColour);
+
+	return 0;
+}
+
+void BeastGui::CreateErrorMessage(const char* ErrorSeverityLevel, const char* Error)
+{
+	//Position Should Be In The Center Of The Screen
+
+	if (ErrorSeverityLevel == "Fatal")
+	{
+		//Dont Allow Program To Resume
+	}
+	else
+	{
+		SDL_Texture* ErrorMessageResumeable = nullptr;
+
+		//Allow Program To Resume
+		ErrorMessageResumeable = TextureManager::Load("GuiImages\\ErrorMessage.png");
+		//TextureGuis.emplace_back("Error", GetGuiToken());
+
+		//Push Back To The Gui Vector
+	}
+}
+
+void BeastGui::RefreshGuiTokens()
+{
+
+}
+
+int BeastGui::GetGuiToken()
+{
+	return CurrentNumberOfToken++;
+}
+
+int BeastGui::GetNumberOfGuis()
+{
+	return 0;
+}
+
+void BeastGui::ClearAllGuis()
+{
+	Guis.clear();
+}
+
+void BeastGui::Update()
+{
+
+	UpdateMenuBar(WindowWidth, WindowHeight);
+
+	RefreshGuiTokens();
+}
+
+void BeastGui::Draw()
+{
+
+}
+
+void BeastGui::Clean()
+{
+	EssentialGuis.clear();
+	Guis.clear();
+}

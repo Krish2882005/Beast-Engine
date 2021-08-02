@@ -4,6 +4,7 @@
 //This Is A Beast Engine File Which Has The License Apache 2.0
 
 #include <iostream>
+#include <string>
 #include "Scene.h"
 #include "Init.h"
 #include "InputHandling.h"
@@ -11,7 +12,6 @@
 #include "CollisionDetection.h"
 #include "ErrorReporter.h"
 #include "TextureManager.h"
-#include <string>
 
 Vector2 MousePosition;
 

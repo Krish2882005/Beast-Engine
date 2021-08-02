@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Beast Engine", "Box2D Game.vcxproj", "{017DBD36-EA28-43B9-9BA0-47B3119E888C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Beast Gui", "..\Beast Gui\Beast Gui.vcxproj", "{FE4783FD-5B89-4268-BB17-D13302E98D42}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -23,14 +21,6 @@ Global
 		{017DBD36-EA28-43B9-9BA0-47B3119E888C}.Release|x64.Build.0 = Release|x64
 		{017DBD36-EA28-43B9-9BA0-47B3119E888C}.Release|x86.ActiveCfg = Release|Win32
 		{017DBD36-EA28-43B9-9BA0-47B3119E888C}.Release|x86.Build.0 = Release|Win32
-		{FE4783FD-5B89-4268-BB17-D13302E98D42}.Debug|x64.ActiveCfg = Debug|x64
-		{FE4783FD-5B89-4268-BB17-D13302E98D42}.Debug|x64.Build.0 = Debug|x64
-		{FE4783FD-5B89-4268-BB17-D13302E98D42}.Debug|x86.ActiveCfg = Debug|Win32
-		{FE4783FD-5B89-4268-BB17-D13302E98D42}.Debug|x86.Build.0 = Debug|Win32
-		{FE4783FD-5B89-4268-BB17-D13302E98D42}.Release|x64.ActiveCfg = Release|x64
-		{FE4783FD-5B89-4268-BB17-D13302E98D42}.Release|x64.Build.0 = Release|x64
-		{FE4783FD-5B89-4268-BB17-D13302E98D42}.Release|x86.ActiveCfg = Release|Win32
-		{FE4783FD-5B89-4268-BB17-D13302E98D42}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

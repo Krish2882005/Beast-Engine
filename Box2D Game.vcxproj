@@ -157,7 +157,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BeastEngine.cpp" />
+    <ClCompile Include="BeastGui.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
+    <ClCompile Include="Editor.cpp" />
     <ClCompile Include="ErrorReporter.cpp" />
     <ClCompile Include="Init.cpp" />
     <ClCompile Include="InputHandling.cpp" />
@@ -170,7 +172,9 @@
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BeastGui.h" />
     <ClInclude Include="CollisionDetection.h" />
+    <ClInclude Include="Editor.h" />
     <ClInclude Include="Entt.h" />
     <ClInclude Include="ErrorReporter.h" />
     <ClInclude Include="Init.h" />
