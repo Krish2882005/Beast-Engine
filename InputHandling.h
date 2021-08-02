@@ -1,11 +1,17 @@
 #pragma once
 #include <SDL.h>
+#include "Vector2.h"
 
 class InputHandling
 {
 	public:
-		bool IsKeyDown(const char* Key);
-		char* GetTextInput();
+		static void Init();
+		static bool IsKeyDown(const char* Key);
+		static Vector2 GetMousePosition();
+		static int GetMouseDown();
+		static int GetMouseUp();
+		static char* GetTextInput();
+		static int GetMouseScroll();
 	private:
-		const Uint8* PressedKey = SDL_GetKeyboardState(0);
+		
 };

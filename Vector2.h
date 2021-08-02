@@ -3,18 +3,7 @@
 class Vector2
 {
 	public:
-		int X = 0;
-		int Y = 0;
-
-		void Normalize();
-		float Magnitude();
-		void Reverse();
-
-		Vector2& operator+=(Vector2 vector2);
-		Vector2& operator-=(Vector2 vector2);
-		Vector2& operator*=(float Number);
-		Vector2& operator/=(float Number);
+		float X = 0;
+		float Y = 0;
 	private:
-		float M = 0.0f;
-		float const T = 0.0001f;
 };

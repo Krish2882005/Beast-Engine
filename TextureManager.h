@@ -9,5 +9,5 @@ class TextureManager
 public:
 	static int Init();
 	static SDL_Texture* Load(const char* File);
-	static void Draw(SDL_Texture* Texture, SDL_Rect* SrcRect, SDL_Rect* DstRect, SDL_RendererFlip Flip = SDL_FLIP_NONE);
+	static void Draw(SDL_Texture* Texture, SDL_Rect* SrcRect, SDL_Rect* DstRect, int Angle = 0, SDL_RendererFlip Flip = SDL_FLIP_NONE);
 };

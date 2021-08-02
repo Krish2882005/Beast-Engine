@@ -4,17 +4,19 @@
 //This Is A Beast Engine File Which Has The License Apache 2.0
 
 #include "Init.h"
-#include <iostream>
 #include "TextureManager.h"
 #include "RenderText.h"
-#include "InputHandling.h"
 #include "Logger.h"
 #include "Vector2.h"
+#include "Scene.h"
+#include "BeastGui.h"
+#include "ErrorReporter.h"
+#include <iostream>
 
 constexpr int ScreenWidth = 1080;
 constexpr int ScreenHeight = 720;
 
-Logger* logger = new Logger();
+Scene scene;
 
 SDL_Renderer* Init::Renderer = nullptr;
 
@@ -22,23 +24,23 @@ SDL_Event Init::Event;
 
 void Init::Init_SDL2()
 {
-	logger->Init();
+	ErrorReporter::Init();
 
-	logger->LogMessage("Info", "Starting Beast Engine");
-	logger->LogMessage("Info", "Initializing Subsystems And Other Tasks");
+	ErrorReporter::LogMessage("Info", "Starting Beast Engine");
+	ErrorReporter::LogMessage("Info", "Initializing Subsystems And Other Tasks");
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
 		if (TextureManager::Init() != 0)
 		{
 			m_IsRunning = false;
-			logger->LogMessage("Error", SDL_GetError());
+			ErrorReporter::LogMessage("Error", SDL_GetError());
 			return;
 		}
 
 		if (RenderText::Init() != 0)
 		{
-			logger->LogMessage("Error", "Error: SDL_ttf Cannot Init");
+			ErrorReporter::LogMessage("Error", SDL_GetError());
 			m_IsRunning = false;
 			return;
 		}
@@ -48,7 +50,7 @@ void Init::Init_SDL2()
 		if (Window == nullptr)
 		{
 			m_IsRunning = false;
-			logger->LogMessage("Error", SDL_GetError());
+			ErrorReporter::LogMessage("Error", SDL_GetError());
 			return;
 		}
 
@@ -56,36 +58,48 @@ void Init::Init_SDL2()
 
 		if (Renderer == nullptr)
 		{
-			logger->LogMessage("Error", SDL_GetError());
+			ErrorReporter::LogMessage("Error", SDL_GetError());
 			m_IsRunning = false;
 			return;
 		}
+
+		SDL_GetWindowSize(Window, &CWindowWidth, &HWindowHeight);
+
+		SDL_RenderSetLogicalSize(Renderer, HWindowHeight, HWindowHeight);
 
 		m_IsRunning = true;
 	}
 	else
 	{
 		m_IsRunning = false;
-		logger->LogMessage("Error", SDL_GetError());
+		ErrorReporter::LogMessage("Error", SDL_GetError());
 		return;
 	}
 
-	logger->LogMessage("Info", "Beast Engine Has Successfully Initialized And Other Tasks Are Completed");
+	scene.Init();
+
+	ErrorReporter::LogMessage("Info", "Beast Engine Has Successfully Initialized And Other Tasks Are Completed");
 }
 
 void Init::Load()
 {
-	logger->LogMessage("Info", "Loading Files And Other Tasks");
+	ErrorReporter::LogMessage("Info", "Loading Files And Other Tasks");
 
 	RenderText::Load();
 
-	logger->LogMessage("Info", "Loading GUI");
+	ErrorReporter::LogMessage("Info", "Loading GUI");
 
-	logger->LogMessage("Info", "Successfully Loaded GUI");
+	ErrorReporter::LogMessage("Info", "Successfully Loaded GUI");
 
-	logger->LogMessage("Info", "Beast Engine Has Loaded Files And Other Tasks Are Succesfully Completed");
+	ErrorReporter::LogMessage("Info", "Loading Scene");
 
-	logger->LogMessage("Info", "Beast Engine Has Started");
+	scene.Load();
+
+	ErrorReporter::LogMessage("Info", "Loaded Scene");
+
+	ErrorReporter::LogMessage("Info", "Beast Engine Has Loaded Files And Other Tasks Are Succesfully Completed");
+
+	ErrorReporter::LogMessage("Info", "Beast Engine Has Started");
 }
 
 void Init::Events()
@@ -96,27 +110,34 @@ void Init::Events()
 	{
 		m_IsRunning = false;
 	}
+
+	scene.Events();
 }
 
 void Init::Update()
 {
-	
+	SDL_GetWindowSize(Window, &CWindowWidth, &HWindowHeight);
+
+	SDL_RenderSetLogicalSize(Renderer, CWindowWidth, HWindowHeight);
+
+	scene.Update();
 }
 
 void Init::Draw()
 {
 	SDL_RenderClear(Renderer);
-	
+	scene.Draw();
 	SDL_RenderPresent(Renderer);
 }
 
 void Init::Clean()
 {
+	scene.Clean();
+
 	RenderText::Clean();
 	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);
 
-	logger->LogMessage("Info", "Beast Engine Is Clean");
-
-	delete logger;
+	ErrorReporter::Clean();
+	ErrorReporter::LogMessage("Info", "Beast Engine Is Clean");
 }

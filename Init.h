@@ -22,4 +22,9 @@ private:
 	SDL_Window* Window = nullptr;
 	int TestGuiMenu = 0;
 	int TestGuiMenu1 = 0;
+
+	int CWindowWidth;
+	int HWindowHeight;
+
+	SDL_DisplayMode DisplayMode;
 };

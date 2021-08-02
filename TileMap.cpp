@@ -1,4 +1,11 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+//This Is A Beast Engine File Which Has The License Apache 2.0
+
 #include "TileMap.h"
+#include "TextureManager.h"
+#include "ErrorReporter.h"
 
 void TileMap::Init()
 {
@@ -12,21 +19,6 @@ void TileMap::Load()
 
 int TileMap::AddTileMap(TileMapCore core)
 {
-	for (int i = 0; i < core.Textures.size(); i++)
-	{
-		if (core.Textures[i] == nullptr)
-		{
-			//Error
-			return -1;
-		}
-	}
-
-	if (core.Textures.size() != core.TextureNumber.size())
-	{
-		//Error
-		return -1;
-	}
-
 	TileMaps.push_back(core);
 
 	TileMapNumber++;
@@ -34,36 +26,38 @@ int TileMap::AddTileMap(TileMapCore core)
 	return TileMapNumber - 1;
 }
 
-bool TileMap::DeleteTileMap(int TileMapNumber)
+void TileMap::DeleteTileMap(int TileMapNumber)
 {
-	if (TileMapNumber > TileMaps.size())
+	TileMaps[TileMapNumber].Level.clear();
+
+	for (int i = 0; i < TileMaps[TileMapNumber].Textures.size();i++)
 	{
-		//Error
-		return false;
-	}
-	else
-	{
-		TileMaps[TileMapNumber].TileMapEnabled = false;
-		TileMaps[TileMapNumber].Level.clear();
-		TileMaps[TileMapNumber].TextureNumber.clear();
-		TileMaps[TileMapNumber].Textures.clear();
-		TileMaps[TileMapNumber].TextureSize = 0;
+		SDL_DestroyTexture(TileMaps[TileMapNumber].Textures[i]);
 	}
 
-	return true;
+	TileMaps[TileMapNumber].Textures.clear();
 }
 
 void TileMap::Update()
 {
-	
+
 }
 
 void TileMap::Draw()
 {
-
+	for (int i = 0; i < TileMaps.size(); i++)
+	{
+		for (int j = 0; j < TileMaps[i].Level.size(); j++)
+		{
+			for (int k = 0; k < TileMaps[i].Level[i].size(); k++)
+			{
+				TextureManager::Draw(TileMaps[i].Textures[TileMaps[i].Level[j][k]], &TileMaps[i].Rect, &TileMaps[i].Rect);
+			}
+		}
+	}
 }
 
 void TileMap::Clean()
 {
-
+	TileMaps.clear();
 }

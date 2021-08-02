@@ -39,7 +39,7 @@ SDL_Texture* TextureManager::Load(const char* File)
 	return Texture;
 }
 
-void TextureManager::Draw(SDL_Texture* Texture, SDL_Rect* SrcRect, SDL_Rect* DstRect, SDL_RendererFlip Flip)
+void TextureManager::Draw(SDL_Texture* Texture, SDL_Rect* SrcRect, SDL_Rect* DstRect, int Angle, SDL_RendererFlip Flip)
 {
-	SDL_RenderCopyEx(Init::Renderer, Texture, SrcRect, DstRect, 0, nullptr, Flip);
+	SDL_RenderCopyEx(Init::Renderer, Texture, SrcRect, DstRect, Angle, nullptr, Flip);
 }

@@ -1,22 +1,19 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_image.h>
-#include <array>
 #include <vector>
+#include "Scene.h"
 
 struct TileMapCore
 {
-	//Number Of Textures Should Be Equal To Number Of TextureNumbers
 	std::vector<SDL_Texture*> Textures;
-	std::vector<int> TextureNumber;
 
 	//The Map
-	std::vector<int> Level;
+	std::vector<std::vector<int> > Level;
 
-	//Distance Between Tiles And Tile Size
-	int TextureSize;
+	SDL_Rect Rect;
 
-	bool TileMapEnabled = true;
+	Scene& scene;
 };
 
 class TileMap
@@ -25,7 +22,7 @@ public:
 	void Init();
 	void Load();
 	int AddTileMap(TileMapCore core);
-	bool DeleteTileMap(int tileMapNumber);
+	void DeleteTileMap(int tileMapNumber);
 	void Update();
 	void Draw();
 	void Clean();

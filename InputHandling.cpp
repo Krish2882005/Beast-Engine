@@ -2,6 +2,9 @@
 
 #include "InputHandling.h"
 #include "Init.h"
+#include <iostream>
+
+const Uint8* PressedKey = SDL_GetKeyboardState(0);
 
 bool InputHandling::IsKeyDown(const char* Key)
 {
@@ -189,9 +192,66 @@ bool InputHandling::IsKeyDown(const char* Key)
 				return true;
 			}
 		}
+		if (SDL_strcasecmp(Key, "left control"))
+		{
+			if (PressedKey[SDL_SCANCODE_LCTRL])
+			{
+				return true;
+			}
+		}
+		if (SDL_strcasecmp(Key, "right control"))
+		{
+			if (PressedKey[SDL_SCANCODE_RCTRL])
+			{
+				return true;
+			}
+		}
 	}
 
 	return false;
+}
+
+Vector2 InputHandling::GetMousePosition()
+{
+	Vector2 MousePosition;
+
+	//if (Init::Event.type == SDL_MOUSEMOTION)
+	//{
+	int MouseXPosition = 0;
+	int MouseYPosition = 0;
+
+	SDL_GetGlobalMouseState(&MouseXPosition, &MouseYPosition);
+
+	MousePosition.X = MouseXPosition;
+	MousePosition.Y = MouseYPosition;
+
+	return MousePosition;
+	//}
+
+	return MousePosition;
+}
+
+bool M_IsMouse1Down = false;
+bool M_IsMouse3Down = false;
+
+int InputHandling::GetMouseDown()
+{
+	if (Init::Event.type == SDL_MOUSEBUTTONDOWN)
+	{
+		return Init::Event.button.button;
+	}
+
+	return 0;
+}
+
+int InputHandling::GetMouseUp()
+{
+	if (Init::Event.type == SDL_MOUSEBUTTONUP)
+	{
+		return Init::Event.button.button;
+	}
+
+	return 0;
 }
 
 char* InputHandling::GetTextInput()
@@ -199,6 +259,18 @@ char* InputHandling::GetTextInput()
 	if (Init::Event.type == SDL_TEXTINPUT)
 	{
 		return Init::Event.text.text;
+	}
+
+	return 0;
+}
+
+int InputHandling::GetMouseScroll()
+{
+	//Check The Output
+
+	if (Init::Event.type == SDL_MOUSEWHEEL)
+	{
+		return Init::Event.wheel.y;
 	}
 	
 	return 0;
