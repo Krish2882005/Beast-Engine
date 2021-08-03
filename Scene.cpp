@@ -12,19 +12,27 @@
 #include "CollisionDetection.h"
 #include "ErrorReporter.h"
 #include "TextureManager.h"
+#include "TileMap.h"
 
 Vector2 MousePosition;
+
+TileMap tilemap;
 
 void Scene::Init()
 {
 	//entt::entity entity = Registry.create();
 	//TransformComponent& transform = Registry.emplace<TransformComponent>(entity);
+
+	tilemap.Init();
 }
 
 void Scene::Load()
 {
 	//Check If All The Gameobjects And Textures Are Loaded In The Folder
 
+	tilemap.Load();
+
+	AddTileMap();
 }
 
 void Scene::Events()
@@ -34,6 +42,10 @@ void Scene::Events()
 
 void Scene::Update()
 {
+	RefreshScene();
+
+	tilemap.Update();
+
 	if (InputHandling::GetMouseDown() == 1)
 	{
 		Vector2 MousePosition;
@@ -50,8 +62,6 @@ void Scene::Update()
 			Layer = "";
 		}
 	}
-
-	RefreshScene();
 }
 
 void Scene::RefreshScene()
@@ -84,6 +94,19 @@ void Scene::RefreshScene()
 			}
 		}
 	}
+}
+
+void Scene::AddTileMap()
+{
+	TileMapCore tilemapcore;
+	tilemapcore.scene = this;
+
+	tilemap.AddTileMap(tilemapcore);
+}
+
+void Scene::DeleteTileMap()
+{
+
 }
 
 void Scene::Draw()
@@ -162,9 +185,11 @@ void Scene::Draw()
 
 	//SDL_SetRenderDrawBlendMode(Init::Renderer, SDL_BLENDMODE_ADD);
 	SDL_SetRenderDrawBlendMode(Init::Renderer, SDL_BLENDMODE_NONE);
+
+	tilemap.Draw();
 }
 
 void Scene::Clean()
 {
-
+	tilemap.Clean();
 }

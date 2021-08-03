@@ -15,7 +15,7 @@ struct TileMapCore
 
 	SDL_Rect Rect;
 
-	Scene& scene;
+	Scene* scene;
 
 	const char* TileMapName;
 };

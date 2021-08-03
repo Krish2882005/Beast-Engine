@@ -26,6 +26,8 @@ class Scene
 		void Events();
 		void Update();
 		void RefreshScene();
+		void AddTileMap();
+		void DeleteTileMap();
 		void Draw();
 		void Clean();
 

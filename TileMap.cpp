@@ -31,7 +31,7 @@ void TileMap::DeleteTileMap(int TileMapNumber)
 {
 	TileMaps[TileMapNumber].Level.clear();
 
-	for (int i = 0; i < TileMaps[TileMapNumber].Textures.size();i++)
+	for (int i = 0; i < TileMaps[TileMapNumber].Textures.size(); i++)
 	{
 		SDL_DestroyTexture(TileMaps[TileMapNumber].Textures[i]);
 	}
@@ -55,6 +55,8 @@ void TileMap::SelectCurrentTileMap(int tileMapNumber)
 	{
 		TileMaps[CurrentTileMap].Textures[i] = TextureManager::Load(TileMaps[CurrentTileMap].FileAdress[i]);
 	}
+
+	RefreshTileMap();
 }
 
 void TileMap::SelectCurrentTileMap(const char* tileMapName)
@@ -78,6 +80,7 @@ void TileMap::Update()
 
 void TileMap::RefreshTileMap()
 {
+	/*
 	for (int i = 0; i < TileMaps[CurrentTileMap].Textures.size(); i++)
 	{
 		if (TileMaps[CurrentTileMap].Textures[i] == nullptr)
@@ -96,14 +99,17 @@ void TileMap::RefreshTileMap()
 			}
 		}
 	}
+	*/
 }
 
 void TileMap::Draw()
 {
+	/*
 	if (TileMaps.size() != 0)
 	{
-		int DistanceBetweenGrids = TileMaps[CurrentTileMap].scene.DistanceBetweenGrid;
-		SDL_Rect SceneRect = TileMaps[CurrentTileMap].scene.SceneRect;
+		int DistanceBetweenGrids = TileMaps[CurrentTileMap].scene->DistanceBetweenGrid;
+
+		SDL_Rect SceneRect = TileMaps[CurrentTileMap].scene->SceneRect;
 
 		SDL_Rect DstRect;
 		DstRect.w = DistanceBetweenGrids;
@@ -121,6 +127,7 @@ void TileMap::Draw()
 			}
 		}
 	}
+	*/
 }
 
 void TileMap::Clean()
