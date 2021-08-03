@@ -28,12 +28,11 @@ class Scene
 		void RefreshScene();
 		void Draw();
 		void Clean();
-	private:
-		entt::registry Registry;
 
 		SDL_Rect SceneRect;
-
 		int DistanceBetweenGrid = 20;
+	private:
+		entt::registry Registry;
 
 		const char* Layer;
 

@@ -75,7 +75,7 @@ void Scene::RefreshScene()
 
 				if (spriterenderer->Sprite == nullptr)
 				{
-					std::string LogMessage = "Cant Reimport " + std::string(spriterenderer->FileAdress) + ". " + SDL_GetError();
+					LogMessage = "Cant Reimport " + std::string(spriterenderer->FileAdress) + ". " + SDL_GetError();
 
 					ErrorReporter::LogMessage("Error", LogMessage.c_str());
 
