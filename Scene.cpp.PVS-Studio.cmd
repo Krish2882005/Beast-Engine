@@ -1,1 +1,0 @@
-@call "C:\Program Files (x86)\PVS-Studio\x64\PVS-Studio.exe" --cfg "C:\Users\ganat\source\repos\Box2D Game\Scene.cpp.PVS-Studio.cfg"
