@@ -83,7 +83,7 @@ void BeastGui::CreateErrorMessage(const char* ErrorSeverityLevel, const char* Er
 {
 	//Position Should Be In The Center Of The Screen
 
-	if (ErrorSeverityLevel == "Fatal")
+	if (strcmp(ErrorSeverityLevel, "Fatal"))
 	{
 		//Dont Allow Program To Resume
 	}

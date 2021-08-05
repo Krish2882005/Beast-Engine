@@ -29,10 +29,7 @@ bool CollisionDetection::DetectCollision(Vector2 Position, SDL_Rect Rect2)
 
 bool CollisionDetection::DetectCollision(Vector2 Position1, Vector2 Position2)
 {
-	if (Position1.X < Position2.X &&
-		Position1.X > Position2.X &&
-		Position1.Y < Position2.Y &&
-		Position1.Y > Position2.Y)
+	if(Position1.X == Position2.X && Position1.X && Position2.Y)
 	{
 		return true;
 	}
