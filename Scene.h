@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "Entt.h"
+#include "Editor.h"
 
 struct TransformComponent
 {
@@ -21,7 +22,7 @@ struct SpriteRenderer
 class Scene
 {
 	public:
-		void Init();
+		void Init(Editor* editor);
 		void Load();
 		void Events();
 		void Update();
@@ -31,9 +32,11 @@ class Scene
 		void Draw();
 		void Clean();
 
-		SDL_Rect SceneRect;
+		SDL_Rect SceneRect = { 200, 20, 680, 550 };
 		int DistanceBetweenGrid = 20;
 	private:
+		Editor* M_Editor = nullptr;
+
 		entt::registry Registry;
 
 		const char* Layer;

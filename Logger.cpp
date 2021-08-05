@@ -26,7 +26,6 @@ void Logger::Init()
 
 void Logger::LogMessage(const char* LogLevel, const char* Message)
 {
-	
 	if (strcmp(LogLevel, "Trace"))
 	{
 		BOOST_LOG_SEV(lg, boost::log::trivial::trace) << Message;

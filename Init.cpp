@@ -8,22 +8,24 @@
 #include "TextureManager.h"
 #include "RenderText.h"
 #include "Logger.h"
-#include "Vector2.h"
 #include "Scene.h"
 #include "BeastGui.h"
 #include "ErrorReporter.h"
 #include "BeastGui.h"
+#include "Editor.h"
 
 constexpr int ScreenWidth = 1080;
 constexpr int ScreenHeight = 720;
-
-Scene scene;
 
 SDL_Renderer* Init::Renderer = nullptr;
 
 SDL_Event Init::Event;
 
-BeastGui beastgui;
+Editor* editor = new Editor();
+
+Scene* scene = new Scene();
+
+BeastGui* beastgui = new BeastGui();
 
 void Init::Init_SDL2()
 {
@@ -41,14 +43,7 @@ void Init::Init_SDL2()
 			return;
 		}
 
-		if (RenderText::Init() != 0)
-		{
-			ErrorReporter::LogMessage("Error", SDL_GetError());
-			m_IsRunning = false;
-			return;
-		}
-
-		Window = SDL_CreateWindow("Beast Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, ScreenWidth, ScreenHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+		Window = SDL_CreateWindow("Beast Engine", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK, ScreenWidth, ScreenHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
 		if (Window == nullptr)
 		{
@@ -66,6 +61,17 @@ void Init::Init_SDL2()
 			return;
 		}
 
+		ErrorReporter::LogMessage("Info", "Initializing GUI");
+
+		if (beastgui->Init() != 0)
+		{
+			ErrorReporter::LogMessage("Error", SDL_GetError());
+			m_IsRunning = false;
+			return;
+		}
+
+		ErrorReporter::LogMessage("Info", "Initialized GUI");
+
 		m_IsRunning = true;
 	}
 	else
@@ -75,13 +81,9 @@ void Init::Init_SDL2()
 		return;
 	}
 
-	ErrorReporter::LogMessage("Info", "Initializing GUI");
+	editor->Init();
 
-	beastgui.Init();
-
-	ErrorReporter::LogMessage("Info", "Initialized GUI");
-
-	scene.Init();
+	scene->Init(editor);
 
 	ErrorReporter::LogMessage("Info", "Beast Engine Has Successfully Initialized And Other Tasks Are Completed");
 }
@@ -90,15 +92,17 @@ void Init::Load()
 {
 	ErrorReporter::LogMessage("Info", "Loading Files And Other Tasks");
 
+	editor->Load();
+
 	ErrorReporter::LogMessage("Info", "Loading GUI");
 	
-	beastgui.Load();
+	beastgui->Load();
 
 	ErrorReporter::LogMessage("Info", "Successfully Loaded GUI");
 
 	ErrorReporter::LogMessage("Info", "Loading Scene");
 
-	scene.Load();
+	scene->Load();
 
 	ErrorReporter::LogMessage("Info", "Loaded Scene");
 
@@ -116,28 +120,35 @@ void Init::Events()
 		m_IsRunning = false;
 	}
 
-	scene.Events();
+	editor->Events();
 }
 
 void Init::Update()
 {
-	scene.Update();
+	editor->Update();
+
+	scene->Update();
 }
 
 void Init::Draw()
 {
 	SDL_RenderClear(Renderer);
 
-	scene.Draw();
+	scene->Draw();
+
+	editor->Draw();
 
 	SDL_RenderPresent(Renderer);
 }
 
 void Init::Clean()
 {
-	scene.Clean();
+	scene->Clean();
 
-	RenderText::Clean();
+	editor->Clean();
+
+	beastgui->Clean();
+
 	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);
 

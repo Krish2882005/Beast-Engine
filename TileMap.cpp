@@ -80,7 +80,6 @@ void TileMap::Update()
 
 void TileMap::RefreshTileMap()
 {
-	/*
 	for (int i = 0; i < TileMaps[CurrentTileMap].Textures.size(); i++)
 	{
 		if (TileMaps[CurrentTileMap].Textures[i] == nullptr)
@@ -99,21 +98,17 @@ void TileMap::RefreshTileMap()
 			}
 		}
 	}
-	*/
 }
 
 void TileMap::Draw()
 {
-	/*
 	if (TileMaps.size() != 0)
 	{
 		int DistanceBetweenGrids = TileMaps[CurrentTileMap].scene->DistanceBetweenGrid;
 
 		SDL_Rect SceneRect = TileMaps[CurrentTileMap].scene->SceneRect;
 
-		SDL_Rect DstRect;
-		DstRect.w = DistanceBetweenGrids;
-		DstRect.h = DistanceBetweenGrids;
+		SDL_Rect DstRect = { 0, 0, DistanceBetweenGrids, DistanceBetweenGrids };
 		SDL_Rect SrcRect = TileMaps[CurrentTileMap].Rect;
 
 		for (int i = 0; i < TileMaps[CurrentTileMap].Level.size(); i++)
@@ -127,7 +122,6 @@ void TileMap::Draw()
 			}
 		}
 	}
-	*/
 }
 
 void TileMap::Clean()

@@ -4,15 +4,18 @@
 #include "BeastGui.h"
 #include "RenderText.h"
 #include "TextureManager.h"
+#include <iostream>
 
-void BeastGui::Init()
+RenderText* rendertext = new RenderText();
+
+int BeastGui::Init()
 {
-
+	return rendertext->Init();
 }
 
 void BeastGui::Load()
 {
-	RenderText::Load();
+	rendertext->Load();
 }
 
 void BeastGui::DrawRect(SDL_Rect* Rect, SDL_Colour Colour)
@@ -20,7 +23,42 @@ void BeastGui::DrawRect(SDL_Rect* Rect, SDL_Colour Colour)
 	SDL_SetRenderDrawColor(Init::Renderer, Colour.r, Colour.g, Colour.b, Colour.a);
 
 	SDL_RenderDrawRect(Init::Renderer, Rect);
+
+	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
+}
+
+void BeastGui::DrawRects(const SDL_Rect* Rects, int Count, SDL_Colour Colour)
+{
+	SDL_SetRenderDrawColor(Init::Renderer, Colour.r, Colour.g, Colour.b, Colour.a);
+
+	SDL_RenderDrawRects(Init::Renderer, Rects, Count);
+
+	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
+}
+
+void BeastGui::DrawLine(float XPos1, float XPos2, float YPos1, float YPos2, SDL_Colour Colour)
+{
+	SDL_SetRenderDrawColor(Init::Renderer, Colour.r, Colour.g, Colour.b, Colour.a);
+
+	SDL_RenderDrawLine(Init::Renderer, XPos1, YPos1, XPos2, YPos2);
+
+	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
+}
+
+void BeastGui::FillRect(SDL_Rect* Rect, SDL_Colour Colour)
+{
+	SDL_SetRenderDrawColor(Init::Renderer, Colour.r, Colour.g, Colour.b, Colour.a);
+
 	SDL_RenderFillRect(Init::Renderer, Rect);
+
+	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
+}
+
+void BeastGui::FillRects(const SDL_Rect* Rects, int Count, SDL_Colour Colour)
+{
+	SDL_SetRenderDrawColor(Init::Renderer, Colour.r, Colour.g, Colour.b, Colour.a);
+
+	SDL_RenderFillRects(Init::Renderer, Rects, Count);
 
 	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
 }
@@ -96,6 +134,7 @@ void BeastGui::Draw()
 
 void BeastGui::Clean()
 {
+	rendertext->Clean();
 	EssentialGuis.clear();
 	Guis.clear();
 }

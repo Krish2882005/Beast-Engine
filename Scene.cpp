@@ -3,7 +3,6 @@
 
 //This Is A Beast Engine File Which Has The License Apache 2.0
 
-#include <iostream>
 #include <string>
 #include "Scene.h"
 #include "Init.h"
@@ -18,10 +17,12 @@ Vector2 MousePosition;
 
 TileMap tilemap;
 
-void Scene::Init()
+void Scene::Init(Editor* editor)
 {
 	//entt::entity entity = Registry.create();
 	//TransformComponent& transform = Registry.emplace<TransformComponent>(entity);
+
+	M_Editor = editor;
 
 	tilemap.Init();
 }
@@ -45,6 +46,12 @@ void Scene::Update()
 	RefreshScene();
 
 	tilemap.Update();
+
+	SceneRect.x = M_Editor->HierarchyBase.x + M_Editor->HierarchyBase.w;
+
+	SceneRect.w = M_Editor->InspectorBase.x - (M_Editor->HierarchyBase.x + M_Editor->HierarchyBase.w);
+
+	SceneRect.h = M_Editor->FileViewerBase.y - 20;
 
 	if (InputHandling::GetMouseDown() == 1)
 	{
@@ -113,12 +120,7 @@ void Scene::Draw()
 {
 	//Drawing The Background Bases
 
-	SDL_SetRenderDrawColor(Init::Renderer, 128, 128, 128, 255);
-
-	SceneRect.x = 200;
-	SceneRect.y = 100;
-	SceneRect.w = 800;
-	SceneRect.h = 500;
+	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
 
 	SDL_RenderDrawRect(Init::Renderer, &SceneRect);
 	SDL_RenderFillRect(Init::Renderer, &SceneRect);
@@ -130,10 +132,7 @@ void Scene::Draw()
 	int GridXCoordinate = SceneRect.x;
 	int GridYCoordinate = SceneRect.y;
 
-	int NumberOfRows = 0;
-	int NumberOfColumns = 0;
-
-	if (Layer == "Scene" && InputHandling::GetMouseDown() == 3)
+	if (InputHandling::GetMouseDown() == 3 && Layer == "Scene")
 	{
 		DistanceBetweenGrid += InputHandling::GetMouseScroll();
 	}
@@ -152,13 +151,9 @@ void Scene::Draw()
 		DistanceBetweenGrid = 500;
 	}
 
-	NumberOfRows = SceneRect.w / DistanceBetweenGrid;
+	int NumberOfRows = (SceneRect.w / DistanceBetweenGrid) + 1;
 
-	NumberOfRows += 1;
-
-	NumberOfColumns = SceneRect.h / DistanceBetweenGrid;
-
-	NumberOfColumns += 1;
+	int NumberOfColumns = (SceneRect.h / DistanceBetweenGrid) + 1;
 
 	SDL_SetRenderDrawBlendMode(Init::Renderer, SDL_BLENDMODE_BLEND);
 
