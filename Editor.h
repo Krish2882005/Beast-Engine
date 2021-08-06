@@ -20,6 +20,8 @@ class Editor
 		void Update();
 		void Draw();
 		void DrawOutlines();
+		void DrawTextBase();
+		void DrawText();
 		void Clean();
 
 		//Menu Bar
@@ -28,7 +30,7 @@ class Editor
 		//Hierarchy
 		SDL_Rect HierarchyBase = { 0, 20, 200, 550 };
 
-		//Inspectors
+		//Inspector
 		SDL_Rect InspectorBase = { 880, 20, 200, 550 };
 
 		//File Viewer
@@ -37,6 +39,7 @@ class Editor
 		std::vector<SDL_Rect> Rects;
 		std::vector<SDL_Rect> OutlineToBeDrawn;
 		std::vector<SDL_Rect> OutlineRects;
+		std::vector<SDL_Rect> TextBase;
 
 		Vector2 MousePosition;
 
@@ -50,5 +53,23 @@ class Editor
 		SDL_Colour OutlineColour = { 127, 127, 127, 255 };
 
 		SDL_Rect OutlineRect;
+
+		const char* CurrentLayer = "";
+
+		//Text Base
+
+		SDL_Colour TextBaseColour = { 127, 127, 127, 255 };
+
+		SDL_Rect HierarchyTextBase;
+
+		SDL_Rect InspectorTextBase;
+
+		//Text
+
+		SDL_Colour TextColour = { 255, 255, 255, 255 };
+
+		SDL_Rect HierarchyText;
+
+		SDL_Rect InspectorText;
 };
 

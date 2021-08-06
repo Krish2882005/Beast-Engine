@@ -121,6 +121,7 @@ void Init::Events()
 	}
 
 	editor->Events();
+	scene->Events();
 }
 
 void Init::Update()

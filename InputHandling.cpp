@@ -6,6 +6,11 @@
 
 const Uint8* PressedKey = SDL_GetKeyboardState(0);
 
+void InputHandling::Init()
+{
+
+}
+
 bool InputHandling::IsKeyDown(const char* Key)
 {
 	if (Init::Event.type == SDL_KEYDOWN)
@@ -212,6 +217,26 @@ bool InputHandling::IsKeyDown(const char* Key)
 }
 
 Vector2 InputHandling::GetMousePosition()
+{
+	Vector2 MousePosition;
+
+	//if (Init::Event.type == SDL_MOUSEMOTION)
+	//{
+	int MouseXPosition = 0;
+	int MouseYPosition = 0;
+
+	SDL_GetMouseState(&MouseXPosition, &MouseYPosition);
+
+	MousePosition.X = MouseXPosition;
+	MousePosition.Y = MouseYPosition;
+
+	return MousePosition;
+	//}
+
+	return MousePosition;
+}
+
+Vector2 InputHandling::GetMouseGlobalPosition()
 {
 	Vector2 MousePosition;
 

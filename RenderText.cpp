@@ -965,23 +965,16 @@ SDL_Surface* TextSurface = nullptr;
 
 SDL_Texture* RenderText::CreateNewTexture(const char* Text, SDL_Rect TextRect, fonts font, SDL_Colour textColour, int FontSize)
 {
+	SDL_DestroyTexture(TextTexture);
+
 	bool ResetFont = false;
 
-	if (FontSize == 82)
-	{
-		ResetFont = false;
-	}
-	else
+	if(FontSize != 82)
 	{
 		ResetFont = true;
-	}
-
-	if (ResetFont)
-	{
+		TTF_CloseFont(Fonts[font]);
 		Fonts[font] = TTF_OpenFont(FontsFileAdress[font], FontSize);
 	}
-
-	SDL_DestroyTexture(TextTexture);
 
 	TextSurface = TTF_RenderText_Blended_Wrapped(Fonts[font], Text, textColour, TextRect.w);
 
@@ -992,6 +985,7 @@ SDL_Texture* RenderText::CreateNewTexture(const char* Text, SDL_Rect TextRect, f
 
 	if (ResetFont)
 	{
+		TTF_CloseFont(Fonts[font]);
 		Fonts[font] = TTF_OpenFont(FontsFileAdress[font], 82);
 	}
 

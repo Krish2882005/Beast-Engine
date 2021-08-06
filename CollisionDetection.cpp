@@ -13,7 +13,6 @@ bool CollisionDetection::DetectCollision(SDL_Rect Rect, SDL_Rect Rect2)
 	return false;
 }
 
-
 bool CollisionDetection::DetectCollision(Vector2 Position, SDL_Rect Rect2)
 {
 	if (Position.X < Rect2.x + Rect2.w &&

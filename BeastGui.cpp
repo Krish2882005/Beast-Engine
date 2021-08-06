@@ -63,22 +63,6 @@ void BeastGui::FillRects(const SDL_Rect* Rects, int Count, SDL_Colour Colour)
 	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
 }
 
-int BeastGui::UpdateMenuBar(float Width, float Height)
-{
-	//Menu Bar Position Is Expected To Be 0 In Position And Width And Height Are Given In The Main Engine File Width And Height Needs To Be Scaled With The Application Sizes
-	SDL_Rect MenuBarRect = { 0, 0, Width, 50 };
-
-	SDL_Colour MenuBarColour;
-	MenuBarColour.r = 128;
-	MenuBarColour.g = 128;
-	MenuBarColour.b = 128;
-	MenuBarColour.a = 255;
-
-	DrawRect(&MenuBarRect, MenuBarColour);
-
-	return 0;
-}
-
 void BeastGui::CreateErrorMessage(const char* ErrorSeverityLevel, const char* Error)
 {
 	//Position Should Be In The Center Of The Screen
@@ -121,9 +105,6 @@ void BeastGui::ClearAllGuis()
 
 void BeastGui::Update()
 {
-
-	UpdateMenuBar(WindowWidth, WindowHeight);
-
 	RefreshGuiTokens();
 }
 

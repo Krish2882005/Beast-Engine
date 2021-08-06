@@ -7,10 +7,22 @@
 #include <string>
 #include "TextureManager.h"
 #include "ErrorReporter.h"
+#include "InputHandling.h"
+#include <iostream>
 
 void TileMap::Init()
 {
+	std::vector<int> EmptyRect;
 
+	for (int i = 0; i < 100; i++)
+	{
+		EmptyRect.push_back(0);
+	}
+
+	for (int i = 0; i < EmptyRect.size(); i++)
+	{
+		Level.push_back(EmptyRect);
+	}
 }
 
 void TileMap::Load()
@@ -18,81 +30,73 @@ void TileMap::Load()
 
 }
 
-int TileMap::AddTileMap(TileMapCore core)
+void TileMap::DeleteTileMap()
 {
-	TileMaps.push_back(core);
+	Level.clear();
 
-	TileMapNumber++;
+	for (int i = 0; i < Textures.size(); i++)
+	{
+		SDL_DestroyTexture(Textures[i]);
+	}
 
-	return TileMapNumber - 1;
+	Textures.clear();
 }
 
-void TileMap::DeleteTileMap(int TileMapNumber)
+void TileMap::Events()
 {
-	TileMaps[TileMapNumber].Level.clear();
-
-	for (int i = 0; i < TileMaps[TileMapNumber].Textures.size(); i++)
-	{
-		SDL_DestroyTexture(TileMaps[TileMapNumber].Textures[i]);
-	}
-
-	TileMaps[TileMapNumber].Textures.clear();
-}
-
-void TileMap::SelectCurrentTileMap(int tileMapNumber)
-{
-	if (TileMaps.size() != 0)
-	{
-		for (int i = 0; i < TileMaps[CurrentTileMap].Textures.size(); i++)
-		{
-			SDL_DestroyTexture(TileMaps[CurrentTileMap].Textures[i]);
-		}
-	}
-
-	CurrentTileMap = tileMapNumber;
-
-	for (int i = 0; i < TileMaps[CurrentTileMap].Textures.size(); i++)
-	{
-		TileMaps[CurrentTileMap].Textures[i] = TextureManager::Load(TileMaps[CurrentTileMap].FileAdress[i]);
-	}
-
-	RefreshTileMap();
-}
-
-void TileMap::SelectCurrentTileMap(const char* tileMapName)
-{
-	for (int i = 0; i < TileMaps.size(); i++)
-	{
-		if (TileMaps[i].TileMapName == tileMapName)
-		{
-			CurrentTileMap = i;
-			return;
-
-			RefreshTileMap();
-		}
-	}
+	MousePosition = InputHandling::GetMousePosition();
+	IsMouseDown = InputHandling::GetMouseDown();
 }
 
 void TileMap::Update()
 {
 	RefreshTileMap();
+
+	ClickedOnTile.X = 0;
+	ClickedOnTile.Y = 0;
+
+	LocalPosition.X = MousePosition.X - scene->SceneRect.x;
+	LocalPosition.Y = MousePosition.Y - scene->SceneRect.y;
+
+	//Check Division By 0
+
+	if (IsMouseDown)
+	{
+		if (LocalPosition.X == 0)
+		{
+			ClickedOnTile.X = 0;
+		}
+		else
+		{
+			ClickedOnTile.X = LocalPosition.X / scene->DistanceBetweenGrid;
+		}
+
+		if (LocalPosition.Y == 0)
+		{
+			ClickedOnTile.Y = 0;
+		}
+		else
+		{
+			ClickedOnTile.Y = LocalPosition.Y / scene->DistanceBetweenGrid;
+		}
+	}
 }
 
 void TileMap::RefreshTileMap()
 {
-	for (int i = 0; i < TileMaps[CurrentTileMap].Textures.size(); i++)
+	for (int i = 0; i < Textures.size(); i++)
 	{
-		if (TileMaps[CurrentTileMap].Textures[i] == nullptr)
+		if (Textures[i] == nullptr)
 		{
-			std::string LogMessage = TileMaps[CurrentTileMap].FileAdress[i] + std::string(" Is A nullptr. ") + std::string("Trying To Reimport File");
+			std::string LogMessage = FileAdress[i] + std::string(" Is A nullptr. ") + std::string("Trying To Reimport File");
 
 			ErrorReporter::LogMessage("Warning", LogMessage.c_str());
 
-			TileMaps[CurrentTileMap].Textures[i] = TextureManager::Load(TileMaps[CurrentTileMap].FileAdress[i]);
+			Textures[i] = TextureManager::Load(FileAdress[i]);
 
-			if (TileMaps[CurrentTileMap].Textures[i] == nullptr)
+			if (Textures[i] == nullptr)
 			{
-				LogMessage = "Cant Reimport " + std::string(TileMaps[CurrentTileMap].FileAdress[i]) + ". " + SDL_GetError();
+				LogMessage = "Cant Reimport " + std::string(FileAdress[i]) + ". " + SDL_GetError();
 
 				ErrorReporter::LogMessage("Error", LogMessage.c_str());
 			}
@@ -102,29 +106,33 @@ void TileMap::RefreshTileMap()
 
 void TileMap::Draw()
 {
-	if (TileMaps.size() != 0)
+	int DistanceBetweenGrids = scene->DistanceBetweenGrid;
+
+	SDL_Rect SceneRect = scene->SceneRect;
+
+	SDL_Rect DstRect = { 0, 0, DistanceBetweenGrids, DistanceBetweenGrids };
+	SDL_Rect SrcRect = Rect;
+
+	/*
+	for (int i = 0; i < Level.size(); i++)
 	{
-		int DistanceBetweenGrids = TileMaps[CurrentTileMap].scene->DistanceBetweenGrid;
-
-		SDL_Rect SceneRect = TileMaps[CurrentTileMap].scene->SceneRect;
-
-		SDL_Rect DstRect = { 0, 0, DistanceBetweenGrids, DistanceBetweenGrids };
-		SDL_Rect SrcRect = TileMaps[CurrentTileMap].Rect;
-
-		for (int i = 0; i < TileMaps[CurrentTileMap].Level.size(); i++)
+		for (int j = 0; i < Level[i].size(); i++)
 		{
-			for (int j = 0; i < TileMaps[CurrentTileMap].Level[i].size(); i++)
-			{
-				DstRect.x = (DistanceBetweenGrids * j) + SceneRect.x;
-				DstRect.y = (DistanceBetweenGrids * i) + SceneRect.y;
+			DstRect.x = (DistanceBetweenGrids * j) + SceneRect.x;
+			DstRect.y = (DistanceBetweenGrids * i) + SceneRect.y;
 
-				TextureManager::Draw(TileMaps[CurrentTileMap].Textures[TileMaps[CurrentTileMap].Level[i][j]], &SrcRect, &DstRect);
-			}
+			TextureManager::Draw(Textures[Level[i][j]], &SrcRect, &DstRect);
 		}
 	}
+	*/
 }
+
 
 void TileMap::Clean()
 {
-	TileMaps.clear();
+	//Save The TileMap
+
+
+
+	DeleteTileMap();
 }

@@ -35,11 +35,14 @@ class Scene
 		SDL_Rect SceneRect = { 200, 20, 680, 550 };
 		int DistanceBetweenGrid = 20;
 	private:
+		Vector2 MousePosition;
+		bool IsMouseDown = false;
+
 		Editor* M_Editor = nullptr;
 
 		entt::registry Registry;
 
-		const char* Layer;
+		const char* Layer = "";
 
 		std::vector<entt::entity> Entities;
 };

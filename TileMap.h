@@ -3,9 +3,29 @@
 #include <SDL_image.h>
 #include <vector>
 #include "Scene.h"
+#include "Vector2.h"
 
-struct TileMapCore
+class TileMap
 {
+public:
+	void Init();
+	void Load();
+	void DeleteTileMap();
+	inline void SetScene(Scene* TileMapScene)
+	{
+		scene = TileMapScene;
+	}
+	void Events();
+	void Update();
+	void RefreshTileMap();
+	void Draw();
+	void Clean();
+private:
+	Vector2 MousePosition;
+	bool IsMouseDown = false;
+
+	Scene* scene = nullptr;
+
 	std::vector<SDL_Texture*> Textures;
 
 	std::vector<const char*> FileAdress;
@@ -15,29 +35,10 @@ struct TileMapCore
 
 	SDL_Rect Rect;
 
-	Scene* scene;
-
 	const char* TileMapName;
-};
 
-class TileMap
-{
-public:
-	void Init();
-	void Load();
-	int AddTileMap(TileMapCore core);
-	void DeleteTileMap(int tileMapNumber);
-	void SelectCurrentTileMap(int tileMapNumber);
-	void SelectCurrentTileMap(const char* tileMapName);
-	void Update();
-	void RefreshTileMap();
-	void Draw();
-	void Clean();
-private:
-	std::vector<TileMapCore> TileMaps;
-	
-	int TileMapNumber = 0;
+	Vector2 ClickedOnTile;
 
-	int CurrentTileMap = 0;
+	Vector2 LocalPosition;
 };
 

@@ -47,7 +47,6 @@ public:
 	void DrawLine(float XPos1, float XPos2, float YPos1, float YPos2, SDL_Colour Colour);
 	void FillRect(SDL_Rect* Rect, SDL_Colour Colour);
 	void FillRects(const SDL_Rect* Rects, int Count, SDL_Colour Colour);
-	int UpdateMenuBar(const float Width, const float Height);
 	void CreateErrorMessage(const char* ErrorSeverityLevel, const char* Error);
 	void DeleteGui(int GuiToken);
 	void Update();

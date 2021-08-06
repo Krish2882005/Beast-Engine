@@ -13,8 +13,6 @@
 #include "TextureManager.h"
 #include "TileMap.h"
 
-Vector2 MousePosition;
-
 TileMap tilemap;
 
 void Scene::Init(Editor* editor)
@@ -39,6 +37,9 @@ void Scene::Load()
 void Scene::Events()
 {
 	MousePosition = InputHandling::GetMousePosition();
+	IsMouseDown = InputHandling::GetMouseDown();
+
+	tilemap.Events();
 }
 
 void Scene::Update()
@@ -57,8 +58,8 @@ void Scene::Update()
 	{
 		Vector2 MousePosition;
 
-		MousePosition.X = InputHandling::GetMousePosition().X;
-		MousePosition.Y = InputHandling::GetMousePosition().Y;
+		MousePosition.X = MousePosition.X;
+		MousePosition.Y = MousePosition.Y;
 
 		if (CollisionDetection::DetectCollision(MousePosition, SceneRect))
 		{
@@ -105,10 +106,7 @@ void Scene::RefreshScene()
 
 void Scene::AddTileMap()
 {
-	TileMapCore tilemapcore;
-	tilemapcore.scene = this;
-
-	tilemap.AddTileMap(tilemapcore);
+	tilemap.SetScene(this);
 }
 
 void Scene::DeleteTileMap()

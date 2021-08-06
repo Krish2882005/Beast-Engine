@@ -8,6 +8,7 @@ class InputHandling
 		static void Init();
 		static bool IsKeyDown(const char* Key);
 		static Vector2 GetMousePosition();
+		static Vector2 GetMouseGlobalPosition();
 		static int GetMouseDown();
 		static int GetMouseUp();
 		static char* GetTextInput();
