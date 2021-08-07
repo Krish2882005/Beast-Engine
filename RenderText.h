@@ -312,7 +312,8 @@ enum fonts
 	webdings,
 	wingding,
 	WINGDNG2,
-	WINGDNG3
+	WINGDNG3,
+	Raleway
 };
 
 class RenderText
@@ -321,6 +322,7 @@ class RenderText
 		int Init();
 		void Load();
 		SDL_Texture* CreateNewTexture(const char* Text, SDL_Rect TextRect, fonts font, SDL_Colour textColour, int FontSize = 82);
+		SDL_Texture* CreateNewTextureWrapped(const char* Text, SDL_Rect TextRect, fonts font, SDL_Colour textColour, int FontSize = 82);
 		void Clean();
 	private:
 		TTF_Font* M_CalibriFont = nullptr;
@@ -631,6 +633,8 @@ class RenderText
 		TTF_Font* M_wingding = nullptr;
 		TTF_Font* M_WINGDNG2 = nullptr;
 		TTF_Font* M_WINGDNG3 = nullptr;
+		//Custom
+		TTF_Font* M_Raleway = nullptr;
 
 		std::vector<TTF_Font*> Fonts;
 		std::vector<const char*> FontsFileAdress;

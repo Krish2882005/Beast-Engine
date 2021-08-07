@@ -11,7 +11,6 @@
 #include "CollisionDetection.h"
 #include "RenderText.h"
 #include "TextureManager.h"
-#include <iostream>
 
 BeastGui* EditorGui = new BeastGui();
 
@@ -198,32 +197,23 @@ void Editor::DrawText()
 	HierarchyText.y = HierarchyTextBase.y + HierarchyTextBase.h / 4;
 	//Use 2
 	HierarchyText.w = HierarchyTextBase.w / 1.5;
-	HierarchyText.h = HierarchyTextBase.h;
+	HierarchyText.h = HierarchyTextBase.h - (HierarchyTextBase.h / 4);
 
 	InspectorText.x = InspectorTextBase.x + InspectorTextBase.w / 6;
 	InspectorText.y = InspectorTextBase.y + InspectorTextBase.h / 4;
 	InspectorText.w = InspectorTextBase.w / 1.5;
-	InspectorText.h = InspectorTextBase.h;
+	InspectorText.h = InspectorTextBase.h - (HierarchyTextBase.h / 4);
 
 	SDL_Texture* HierarchyTextTexture = nullptr;
 	SDL_Texture* InspectorTextTexture = nullptr;
 
-	HierarchyTextTexture = EditorTextRenderer->CreateNewTexture("Hierarchy", HierarchyText, CalibriFont, TextColour, 26);
+	HierarchyTextTexture = EditorTextRenderer->CreateNewTexture("Hierarchy", HierarchyText, Raleway, TextColour, 82);
 
 	TextureManager::Draw(HierarchyTextTexture, 0, &HierarchyText);
 
-	InspectorTextTexture = EditorTextRenderer->CreateNewTexture("Inspector", InspectorText, CalibriFont, TextColour, 26);
+	InspectorTextTexture = EditorTextRenderer->CreateNewTexture("Inspector", InspectorText, Raleway, TextColour, 82);
 
 	TextureManager::Draw(InspectorTextTexture, 0, &InspectorText);
-
-	if (HierarchyTextTexture == nullptr)
-	{
-		std::cout << "Hello" << std::endl;
-	}
-	if (InspectorTextTexture == nullptr)
-	{
-		std::cout << "Hi" << std::endl;
-	}
 
 	SDL_DestroyTexture(HierarchyTextTexture);
 	SDL_DestroyTexture(InspectorTextTexture);
