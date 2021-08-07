@@ -330,7 +330,7 @@ void RenderText::Load()
 	M_wingding = TTF_OpenFont("Fonts/wingding.ttf", 82);
 	M_WINGDNG2 = TTF_OpenFont("Fonts/WINGDNG2.ttf", 82);
 	M_WINGDNG3 = TTF_OpenFont("Fonts/WINGDNG3.ttf", 82);
-	M_Raleway = TTF_OpenFont("Fonts/Custom/Raleway_Regular.ttf", 82);
+	M_Raleway = TTF_OpenFont("Fonts/Custom/Raleway_Regular.ttf", 1280);
 
 	Fonts.push_back(M_CalibriFont);
 	Fonts.push_back(M_AGENCYB);
@@ -640,7 +640,8 @@ void RenderText::Load()
 	Fonts.push_back(M_wingding);
 	Fonts.push_back(M_WINGDNG2);
 	Fonts.push_back(M_WINGDNG3);
-	Fonts.push_back(M_Raleway);
+
+	CustomFonts.push_back(M_Raleway);
 
 	FontsFileAdress.push_back("Fonts/calibri.ttf");
 	FontsFileAdress.push_back("Fonts/AGENCYB.ttf");
@@ -950,7 +951,6 @@ void RenderText::Load()
 	FontsFileAdress.push_back("Fonts/wingding.ttf");
 	FontsFileAdress.push_back("Fonts/WINGDNG2.ttf");
 	FontsFileAdress.push_back("Fonts/WINGDNG3.ttf");
-	FontsFileAdress.push_back("Fonts/Custom/Raleway_Regular.ttf");
 
 	for (int i = 0; i < Fonts.size(); i++)
 	{
@@ -968,8 +968,6 @@ SDL_Surface* TextSurface = nullptr;
 
 SDL_Texture* RenderText::CreateNewTexture(const char* Text, SDL_Rect TextRect, fonts font, SDL_Colour textColour, int FontSize)
 {
-	SDL_DestroyTexture(TextTexture);
-
 	bool ResetFont = false;
 
 	if(FontSize != 82)
@@ -997,8 +995,6 @@ SDL_Texture* RenderText::CreateNewTexture(const char* Text, SDL_Rect TextRect, f
 
 SDL_Texture* RenderText::CreateNewTextureWrapped(const char* Text, SDL_Rect TextRect, fonts font, SDL_Colour textColour, int FontSize)
 {
-	SDL_DestroyTexture(TextTexture);
-
 	bool ResetFont = false;
 
 	if (FontSize != 82)
@@ -1020,6 +1016,30 @@ SDL_Texture* RenderText::CreateNewTextureWrapped(const char* Text, SDL_Rect Text
 		TTF_CloseFont(Fonts[font]);
 		Fonts[font] = TTF_OpenFont(FontsFileAdress[font], 82);
 	}
+
+	return TextTexture;
+}
+
+SDL_Texture* RenderText::CreateNewTextureCustom(const char* Text, SDL_Rect TextRect, customfonts font, SDL_Colour textColour)
+{
+	TextSurface = TTF_RenderText_Blended(CustomFonts[font], Text, textColour);
+
+	TextTexture = SDL_CreateTextureFromSurface(Init::Renderer, TextSurface);
+
+	SDL_QueryTexture(TextTexture, nullptr, nullptr, &TextRect.w, &TextRect.h);
+	SDL_FreeSurface(TextSurface);
+
+	return TextTexture;
+}
+
+SDL_Texture* RenderText::CreateNewTextureWrappedCustom(const char* Text, SDL_Rect TextRect, customfonts font, SDL_Colour textColour)
+{
+	TextSurface = TTF_RenderText_Blended_Wrapped(CustomFonts[font], Text, textColour, TextRect.w);
+
+	TextTexture = SDL_CreateTextureFromSurface(Init::Renderer, TextSurface);
+
+	SDL_QueryTexture(TextTexture, nullptr, nullptr, &TextRect.w, &TextRect.h);
+	SDL_FreeSurface(TextSurface);
 
 	return TextTexture;
 }

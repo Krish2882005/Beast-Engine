@@ -313,6 +313,10 @@ enum fonts
 	wingding,
 	WINGDNG2,
 	WINGDNG3,
+};
+
+enum customfonts
+{
 	Raleway
 };
 
@@ -323,6 +327,8 @@ class RenderText
 		void Load();
 		SDL_Texture* CreateNewTexture(const char* Text, SDL_Rect TextRect, fonts font, SDL_Colour textColour, int FontSize = 82);
 		SDL_Texture* CreateNewTextureWrapped(const char* Text, SDL_Rect TextRect, fonts font, SDL_Colour textColour, int FontSize = 82);
+		SDL_Texture* CreateNewTextureCustom(const char* Text, SDL_Rect TextRect, customfonts font, SDL_Colour textColour);
+		SDL_Texture* CreateNewTextureWrappedCustom(const char* Text, SDL_Rect TextRect, customfonts font, SDL_Colour textColour);
 		void Clean();
 	private:
 		TTF_Font* M_CalibriFont = nullptr;
@@ -633,9 +639,11 @@ class RenderText
 		TTF_Font* M_wingding = nullptr;
 		TTF_Font* M_WINGDNG2 = nullptr;
 		TTF_Font* M_WINGDNG3 = nullptr;
-		//Custom
+
+		//Custom For Game Engine
 		TTF_Font* M_Raleway = nullptr;
 
 		std::vector<TTF_Font*> Fonts;
+		std::vector<TTF_Font*> CustomFonts;
 		std::vector<const char*> FontsFileAdress;
 };

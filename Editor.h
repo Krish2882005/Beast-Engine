@@ -13,63 +13,70 @@
 
 class Editor
 {
-	public:
-		void Init();
-		void Load();
-		void Events();
-		void Update();
-		void Draw();
-		void DrawOutlines();
-		void DrawTextBase();
-		void DrawText();
-		void Clean();
+public:
+	void Init();
+	void Load();
+	void Events();
+	void Update();
+	void Draw();
+	void DrawOutlines();
+	void DrawTextBase();
+	void DrawText();
+	void Clean();
 
-		//Menu Bar
-		SDL_Rect MenuBarBase = { 0, 0, 1080, 20 };
+	//Menu Bar
+	SDL_Rect MenuBarBase = { 0, 0, 1080, 20 };
 
-		//Hierarchy
-		SDL_Rect HierarchyBase = { 0, 20, 200, 550 };
+	//Hierarchy
+	SDL_Rect HierarchyBase = { 0, 20, 200, 550 };
 
-		//Inspector
-		SDL_Rect InspectorBase = { 880, 20, 200, 550 };
+	//Inspector
+	SDL_Rect InspectorBase = { 880, 20, 200, 550 };
 
-		//File Viewer
-		SDL_Rect FileViewerBase = { 0, 570, 1080, 220 };
-	private:
-		std::vector<SDL_Rect> Rects;
-		std::vector<SDL_Rect> OutlineToBeDrawn;
-		std::vector<SDL_Rect> OutlineRects;
-		std::vector<SDL_Rect> TextBase;
+	//File Viewer
+	SDL_Rect FileViewerBase = { 0, 570, 1080, 220 };
+private:
+	std::vector<SDL_Rect> Rects;
+	std::vector<SDL_Rect> OutlineToBeDrawn;
+	std::vector<SDL_Rect> OutlineRects;
+	std::vector<SDL_Rect> TextBase;
 
-		Vector2 MousePosition;
+	Vector2 MousePosition;
 
-		float MouseScroll = 0.0f;
+	float MouseScroll = 0.0f;
 
-		bool IsMouseDown = false;
+	bool IsMouseDown = false;
 
-		//Scene Colour
-		SDL_Colour Colour = { 195, 195, 195, 255 };
+	//Scene Colour
+	SDL_Colour Colour = { 195, 195, 195, 255 };
 
-		SDL_Colour OutlineColour = { 127, 127, 127, 255 };
+	SDL_Colour OutlineColour = { 127, 127, 127, 255 };
 
-		SDL_Rect OutlineRect;
+	SDL_Rect OutlineRect;
 
-		const char* CurrentLayer = "";
+	const char* CurrentLayer = "";
 
-		//Text Base
+	//Text Base
 
-		SDL_Colour TextBaseColour = { 127, 127, 127, 255 };
+	SDL_Colour TextBaseColour = { 127, 127, 127, 255 };
 
-		SDL_Rect HierarchyTextBase;
+	SDL_Rect HierarchyTextBase;
 
-		SDL_Rect InspectorTextBase;
+	SDL_Rect InspectorTextBase;
 
-		//Text
+	//Text
 
-		SDL_Colour TextColour = { 255, 255, 255, 255 };
+	SDL_Colour TextColour = { 255, 255, 255, 255 };
 
-		SDL_Rect HierarchyText;
+	SDL_Rect HierarchyText;
 
-		SDL_Rect InspectorText;
+	SDL_Rect InspectorText;
+
+	SDL_Texture* HierarchyTextTexture = nullptr;
+	SDL_Texture* InspectorTextTexture = nullptr;
+
+	//For Text Optimizing
+	SDL_Rect OldHierarchyTextBase = { 1, 1, 1, 1 };
+	SDL_Rect OldInspectorTextBase = { 1, 1, 1, 1 };
 };
 

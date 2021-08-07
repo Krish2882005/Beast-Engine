@@ -11,6 +11,7 @@
 #include "CollisionDetection.h"
 #include "RenderText.h"
 #include "TextureManager.h"
+#include <iostream>
 
 BeastGui* EditorGui = new BeastGui();
 
@@ -193,30 +194,39 @@ void Editor::DrawTextBase()
 
 void Editor::DrawText()
 {
-	HierarchyText.x = HierarchyTextBase.x + HierarchyTextBase.w / 6;
-	HierarchyText.y = HierarchyTextBase.y + HierarchyTextBase.h / 4;
-	//Use 2
-	HierarchyText.w = HierarchyTextBase.w / 1.5;
-	HierarchyText.h = HierarchyTextBase.h - (HierarchyTextBase.h / 4);
+	if (OldHierarchyTextBase.x != HierarchyTextBase.x || OldHierarchyTextBase.y != HierarchyTextBase.y || OldHierarchyTextBase.w != HierarchyTextBase.w || OldHierarchyTextBase.h != HierarchyTextBase.h)
+	{
+		OldHierarchyTextBase = HierarchyTextBase;
 
-	InspectorText.x = InspectorTextBase.x + InspectorTextBase.w / 6;
-	InspectorText.y = InspectorTextBase.y + InspectorTextBase.h / 4;
-	InspectorText.w = InspectorTextBase.w / 1.5;
-	InspectorText.h = InspectorTextBase.h - (HierarchyTextBase.h / 4);
+		HierarchyText.x = HierarchyTextBase.x + HierarchyTextBase.w / 6;
+		HierarchyText.y = HierarchyTextBase.y + HierarchyTextBase.h / 4;
+		//Use 2
+		HierarchyText.w = HierarchyTextBase.w / 1.5;
+		HierarchyText.h = HierarchyTextBase.h - (HierarchyTextBase.h / 4);
 
-	SDL_Texture* HierarchyTextTexture = nullptr;
-	SDL_Texture* InspectorTextTexture = nullptr;
+		SDL_DestroyTexture(HierarchyTextTexture);
 
-	HierarchyTextTexture = EditorTextRenderer->CreateNewTexture("Hierarchy", HierarchyText, Raleway, TextColour, 82);
+		HierarchyTextTexture = EditorTextRenderer->CreateNewTextureCustom("Hierarchy", HierarchyText, Raleway, TextColour);
+	}
 
 	TextureManager::Draw(HierarchyTextTexture, 0, &HierarchyText);
 
-	InspectorTextTexture = EditorTextRenderer->CreateNewTexture("Inspector", InspectorText, Raleway, TextColour, 82);
+	if (OldInspectorTextBase.x != InspectorTextBase.x || OldInspectorTextBase.y != InspectorTextBase.y || OldInspectorTextBase.w != InspectorTextBase.w || OldInspectorTextBase.h != InspectorTextBase.h)
+	{
+		OldInspectorTextBase = InspectorTextBase;
 
+		InspectorText.x = InspectorTextBase.x + InspectorTextBase.w / 6;
+		InspectorText.y = InspectorTextBase.y + InspectorTextBase.h / 4;
+		InspectorText.w = InspectorTextBase.w / 1.5;
+		InspectorText.h = InspectorTextBase.h - (HierarchyTextBase.h / 4);
+
+		SDL_DestroyTexture(InspectorTextTexture);
+
+		InspectorTextTexture = EditorTextRenderer->CreateNewTextureCustom("Inspector", InspectorText, Raleway, TextColour);
+	}
+
+	
 	TextureManager::Draw(InspectorTextTexture, 0, &InspectorText);
-
-	SDL_DestroyTexture(HierarchyTextTexture);
-	SDL_DestroyTexture(InspectorTextTexture);
 }
 
 void Editor::Clean()
