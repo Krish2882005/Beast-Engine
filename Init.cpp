@@ -43,7 +43,7 @@ void Init::Init_SDL2()
 			return;
 		}
 
-		Window = SDL_CreateWindow("Beast Engine", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK, ScreenWidth, ScreenHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+		Window = SDL_CreateWindow("Beast Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, ScreenWidth, ScreenHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
 		if (Window == nullptr)
 		{

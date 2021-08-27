@@ -54,13 +54,8 @@ void Scene::Update()
 
 	SceneRect.h = M_Editor->FileViewerBase.y - 20;
 
-	if (InputHandling::GetMouseDown() == 1)
+	if (IsMouseDown == 1)
 	{
-		Vector2 MousePosition;
-
-		MousePosition.X = MousePosition.X;
-		MousePosition.Y = MousePosition.Y;
-
 		if (CollisionDetection::DetectCollision(MousePosition, SceneRect))
 		{
 			Layer = "Scene";
@@ -81,7 +76,7 @@ void Scene::RefreshScene()
 
 		if (spriterenderer != nullptr)
 		{
-			//Is Texture Is Not Found Then Log Warning And Try To Reimport
+			//If Texture Is Not Found Then Log Warning And Try To Reimport
 			//If The Texture Is Stil A nullptr Then Log Error
 			if (spriterenderer->Sprite == nullptr)
 			{
@@ -116,69 +111,6 @@ void Scene::DeleteTileMap()
 
 void Scene::Draw()
 {
-	//Drawing The Background Bases
-
-	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
-
-	SDL_RenderDrawRect(Init::Renderer, &SceneRect);
-	SDL_RenderFillRect(Init::Renderer, &SceneRect);
-
-	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
-
-	//Drawing The Scene Grid
-
-	int GridXCoordinate = SceneRect.x;
-	int GridYCoordinate = SceneRect.y;
-
-	if (InputHandling::GetMouseDown() == 3 && Layer == "Scene")
-	{
-		DistanceBetweenGrid += InputHandling::GetMouseScroll();
-	}
-
-	//if (DistanceBetweenGrid <= 0)
-	//{
-		//DistanceBetweenGrid = 1;
-	//}
-
-	if (DistanceBetweenGrid <= 10)
-	{
-		DistanceBetweenGrid = 10;
-	}
-	else if (DistanceBetweenGrid >= 500)
-	{
-		DistanceBetweenGrid = 500;
-	}
-
-	int NumberOfRows = (SceneRect.w / DistanceBetweenGrid) + 1;
-
-	int NumberOfColumns = (SceneRect.h / DistanceBetweenGrid) + 1;
-
-	SDL_SetRenderDrawBlendMode(Init::Renderer, SDL_BLENDMODE_BLEND);
-
-	SDL_SetRenderDrawColor(Init::Renderer, 255, 255, 255, 30);
-
-	for (int i = 0; i < NumberOfRows; i++)
-	{
-		SDL_RenderDrawLine(Init::Renderer, GridXCoordinate, GridYCoordinate, GridXCoordinate, GridYCoordinate + SceneRect.h - 1);
-
-		GridXCoordinate += DistanceBetweenGrid;
-	}
-
-	GridXCoordinate = SceneRect.x;
-	GridYCoordinate = SceneRect.y;
-
-	for (int i = 0; i < NumberOfColumns; i++)
-	{
-		SDL_RenderDrawLine(Init::Renderer, GridXCoordinate, GridYCoordinate, GridXCoordinate + SceneRect.w - 1, GridYCoordinate);
-
-		GridYCoordinate += DistanceBetweenGrid;
-	}
-
-	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
-
-	//SDL_SetRenderDrawBlendMode(Init::Renderer, SDL_BLENDMODE_ADD);
-	SDL_SetRenderDrawBlendMode(Init::Renderer, SDL_BLENDMODE_NONE);
-
 	tilemap.Draw();
 }
 

@@ -11,7 +11,6 @@
 #include "CollisionDetection.h"
 #include "RenderText.h"
 #include "TextureManager.h"
-#include <iostream>
 
 BeastGui* EditorGui = new BeastGui();
 
@@ -194,6 +193,8 @@ void Editor::DrawTextBase()
 
 void Editor::DrawText()
 {
+	SDL_SetRenderDrawBlendMode(Init::Renderer, SDL_BLENDMODE_BLEND);
+
 	if (OldHierarchyTextBase.x != HierarchyTextBase.x || OldHierarchyTextBase.y != HierarchyTextBase.y || OldHierarchyTextBase.w != HierarchyTextBase.w || OldHierarchyTextBase.h != HierarchyTextBase.h)
 	{
 		OldHierarchyTextBase = HierarchyTextBase;
@@ -227,6 +228,8 @@ void Editor::DrawText()
 
 	
 	TextureManager::Draw(InspectorTextTexture, 0, &InspectorText);
+
+	SDL_SetRenderDrawBlendMode(Init::Renderer, SDL_BLENDMODE_NONE);
 }
 
 void Editor::Clean()

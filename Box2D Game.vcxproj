@@ -89,13 +89,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SDL2\SDL2-2.0.14\include;C:\SDL2\SDL2_image-2.0.5\include;C:\SDL2\SDL2_ttf-2.0.15\include;C:\Boost Library\boost_1_76_0;C:\Users\ganat\source\repos\Beast Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDL2\SDL2-2.0.14\include;C:\SDL2\SDL2_image-2.0.5\include;C:\SDL2\SDL2_ttf-2.0.15\include;C:\Boost Library\boost_1_77_0;C:\Users\ganat\source\repos\Beast Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SDL2\SDL2-2.0.14\lib\x86;C:\SDL2\SDL2_image-2.0.5\lib\x86;C:\SDL2\SDL2_ttf-2.0.15\lib\x86;C:\Boost Library\boost_1_76_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\SDL2\SDL2-2.0.14\lib\x86;C:\SDL2\SDL2_image-2.0.5\lib\x86;C:\SDL2\SDL2_ttf-2.0.15\lib\x86;C:\Boost Library\boost_1_77_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -107,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SDL2\SDL2-2.0.14\include;C:\SDL2\SDL2_image-2.0.5\include;C:\SDL2\SDL2_ttf-2.0.15\include;C:\Boost Library\boost_1_76_0;C:\Users\ganat\source\repos\Beast Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDL2\SDL2-2.0.14\include;C:\SDL2\SDL2_image-2.0.5\include;C:\SDL2\SDL2_ttf-2.0.15\include;C:\Boost Library\boost_1_77_0;C:\Users\ganat\source\repos\Beast Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -115,7 +115,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SDL2\SDL2-2.0.14\lib\x86;C:\SDL2\SDL2_image-2.0.5\lib\x86;C:\SDL2\SDL2_ttf-2.0.15\lib\x86;C:\Boost Library\boost_1_76_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\SDL2\SDL2-2.0.14\lib\x86;C:\SDL2\SDL2_image-2.0.5\lib\x86;C:\SDL2\SDL2_ttf-2.0.15\lib\x86;C:\Boost Library\boost_1_77_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -125,13 +125,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SDL2\SDL2-2.0.14\include;C:\SDL2\SDL2_image-2.0.5\include;C:\SDL2\SDL2_ttf-2.0.15\include;C:\Boost Library\boost_1_76_0;C:\Users\ganat\source\repos\Beast Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDL2\SDL2-2.0.14\include;C:\SDL2\SDL2_image-2.0.5\include;C:\SDL2\SDL2_ttf-2.0.15\include;C:\Boost Library\boost_1_77_0;C:\Users\ganat\source\repos\Beast Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SDL2\SDL2-2.0.14\lib\x64;C:\SDL2\SDL2_image-2.0.5\lib\x64;C:\SDL2\SDL2_ttf-2.0.15\lib\x64;C:\Boost Library\boost_1_76_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\SDL2\SDL2-2.0.14\lib\x64;C:\SDL2\SDL2_image-2.0.5\lib\x64;C:\SDL2\SDL2_ttf-2.0.15\lib\x64;C:\Boost Library\boost_1_77_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -143,7 +143,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SDL2\SDL2-2.0.14\include;C:\SDL2\SDL2_image-2.0.5\include;C:\SDL2\SDL2_ttf-2.0.15\include;C:\Boost Library\boost_1_76_0;C:\Users\ganat\source\repos\Beast Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDL2\SDL2-2.0.14\include;C:\SDL2\SDL2_image-2.0.5\include;C:\SDL2\SDL2_ttf-2.0.15\include;C:\Boost Library\boost_1_77_0;C:\Users\ganat\source\repos\Beast Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -151,7 +151,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SDL2\SDL2-2.0.14\lib\x64;C:\SDL2\SDL2_image-2.0.5\lib\x64;C:\SDL2\SDL2_ttf-2.0.15\lib\x64;C:\Boost Library\boost_1_76_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\SDL2\SDL2-2.0.14\lib\x64;C:\SDL2\SDL2_image-2.0.5\lib\x64;C:\SDL2\SDL2_ttf-2.0.15\lib\x64;C:\Boost Library\boost_1_77_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -159,12 +159,17 @@
     <ClCompile Include="BeastEngine.cpp" />
     <ClCompile Include="BeastGui.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
+    <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="ErrorReporter.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Init.cpp" />
     <ClCompile Include="InputHandling.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Maths.cpp" />
+    <ClCompile Include="Message.cpp" />
+    <ClCompile Include="Search.cpp" />
+    <ClCompile Include="Sort.cpp" />
     <ClCompile Include="RenderText.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -174,18 +179,27 @@
   <ItemGroup>
     <ClInclude Include="BeastGui.h" />
     <ClInclude Include="CollisionDetection.h" />
+    <ClInclude Include="Colour.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="Entt.h" />
     <ClInclude Include="ErrorReporter.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="Init.h" />
     <ClInclude Include="InputHandling.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Maths.h" />
+    <ClInclude Include="Message.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Search.h" />
+    <ClInclude Include="Sort.h" />
     <ClInclude Include="RenderText.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="Vector2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Beast Engine.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

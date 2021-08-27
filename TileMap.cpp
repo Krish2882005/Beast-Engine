@@ -8,7 +8,9 @@
 #include "TextureManager.h"
 #include "ErrorReporter.h"
 #include "InputHandling.h"
-#include <iostream>
+#include "Grid.h"
+
+Grid defaultgrid;
 
 void TileMap::Init()
 {
@@ -23,11 +25,13 @@ void TileMap::Init()
 	{
 		Level.push_back(EmptyRect);
 	}
+
+	Textures.push_back(nullptr);
 }
 
 void TileMap::Load()
 {
-
+	defaultgrid.Load();
 }
 
 void TileMap::DeleteTileMap()
@@ -42,18 +46,23 @@ void TileMap::DeleteTileMap()
 	Textures.clear();
 }
 
+void TileMap::SetScene(Scene* TileMapScene)
+{
+	scene = TileMapScene;
+	defaultgrid.Init(scene);
+}
+
 void TileMap::Events()
 {
 	MousePosition = InputHandling::GetMousePosition();
 	IsMouseDown = InputHandling::GetMouseDown();
+
+	defaultgrid.Events();
 }
 
 void TileMap::Update()
 {
 	RefreshTileMap();
-
-	ClickedOnTile.X = 0;
-	ClickedOnTile.Y = 0;
 
 	LocalPosition.X = MousePosition.X - scene->SceneRect.x;
 	LocalPosition.Y = MousePosition.Y - scene->SceneRect.y;
@@ -68,7 +77,7 @@ void TileMap::Update()
 		}
 		else
 		{
-			ClickedOnTile.X = LocalPosition.X / scene->DistanceBetweenGrid;
+			ClickedOnTile.X = LocalPosition.X / defaultgrid.DistanceBetweenGrid;
 		}
 
 		if (LocalPosition.Y == 0)
@@ -77,13 +86,16 @@ void TileMap::Update()
 		}
 		else
 		{
-			ClickedOnTile.Y = LocalPosition.Y / scene->DistanceBetweenGrid;
+			ClickedOnTile.Y = LocalPosition.Y / defaultgrid.DistanceBetweenGrid;
 		}
 	}
+
+	defaultgrid.Update();
 }
 
 void TileMap::RefreshTileMap()
 {
+	/*
 	for (int i = 0; i < Textures.size(); i++)
 	{
 		if (Textures[i] == nullptr)
@@ -102,34 +114,37 @@ void TileMap::RefreshTileMap()
 			}
 		}
 	}
+	*/
 }
 
 void TileMap::Draw()
 {
-	int DistanceBetweenGrids = scene->DistanceBetweenGrid;
+	defaultgrid.Draw();
+
+	int DistanceBetweenGrids = defaultgrid.DistanceBetweenGrid;
 
 	SDL_Rect SceneRect = scene->SceneRect;
 
 	SDL_Rect DstRect = { 0, 0, DistanceBetweenGrids, DistanceBetweenGrids };
 	SDL_Rect SrcRect = Rect;
 
-	/*
 	for (int i = 0; i < Level.size(); i++)
 	{
-		for (int j = 0; i < Level[i].size(); i++)
+		for (int j = 0; j < Level[i].size(); j++)
 		{
 			DstRect.x = (DistanceBetweenGrids * j) + SceneRect.x;
 			DstRect.y = (DistanceBetweenGrids * i) + SceneRect.y;
 
-			TextureManager::Draw(Textures[Level[i][j]], &SrcRect, &DstRect);
+			TextureManager::Draw(Textures[Level[j][i]], &SrcRect, &DstRect);
 		}
 	}
-	*/
 }
 
 
 void TileMap::Clean()
 {
+	defaultgrid.Clean();
+
 	//Save The TileMap
 
 

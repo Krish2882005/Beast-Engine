@@ -45,6 +45,15 @@ void BeastGui::DrawLine(float XPos1, float XPos2, float YPos1, float YPos2, SDL_
 	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
 }
 
+void BeastGui::DrawLines(SDL_Point* Points, int Count, SDL_Colour Colour)
+{
+	SDL_SetRenderDrawColor(Init::Renderer, Colour.r, Colour.g, Colour.b, Colour.a);
+
+	SDL_RenderDrawLines(Init::Renderer, Points, Count);
+
+	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
+}
+
 void BeastGui::FillRect(SDL_Rect* Rect, SDL_Colour Colour)
 {
 	SDL_SetRenderDrawColor(Init::Renderer, Colour.r, Colour.g, Colour.b, Colour.a);
@@ -83,6 +92,10 @@ void BeastGui::CreateErrorMessage(const char* ErrorSeverityLevel, const char* Er
 	}
 }
 
+void BeastGui::DeleteGui()
+{
+}
+
 void BeastGui::RefreshGuiTokens()
 {
 
@@ -101,6 +114,11 @@ int BeastGui::GetNumberOfGuis()
 void BeastGui::ClearAllGuis()
 {
 	Guis.clear();
+}
+
+void BeastGui::Events()
+{
+
 }
 
 void BeastGui::Update()

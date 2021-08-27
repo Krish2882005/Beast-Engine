@@ -33,7 +33,8 @@ class Scene
 		void Clean();
 
 		SDL_Rect SceneRect = { 200, 20, 680, 550 };
-		int DistanceBetweenGrid = 20;
+
+		const char* Layer = "";
 	private:
 		Vector2 MousePosition;
 		bool IsMouseDown = false;
@@ -41,8 +42,6 @@ class Scene
 		Editor* M_Editor = nullptr;
 
 		entt::registry Registry;
-
-		const char* Layer = "";
 
 		std::vector<entt::entity> Entities;
 };

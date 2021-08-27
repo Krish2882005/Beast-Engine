@@ -7,38 +7,35 @@
 
 class TileMap
 {
-public:
-	void Init();
-	void Load();
-	void DeleteTileMap();
-	inline void SetScene(Scene* TileMapScene)
-	{
-		scene = TileMapScene;
-	}
-	void Events();
-	void Update();
-	void RefreshTileMap();
-	void Draw();
-	void Clean();
-private:
-	Vector2 MousePosition;
-	bool IsMouseDown = false;
+	public:
+		void Init();
+		void Load();
+		void DeleteTileMap();
+		void SetScene(Scene* TileMapScene);
+		void Events();
+		void Update();
+		void RefreshTileMap();
+		void Draw();
+		void Clean();
+	private:
+		Vector2 MousePosition;
+		bool IsMouseDown = false;
 
-	Scene* scene = nullptr;
+		Scene* scene = nullptr;
 
-	std::vector<SDL_Texture*> Textures;
+		std::vector<SDL_Texture*> Textures;
 
-	std::vector<const char*> FileAdress;
+		std::vector<const char*> FileAdress;
 
-	//The Map
-	std::vector<std::vector<int> > Level;
+		//The Map
+		std::vector<std::vector<int> > Level;
 
-	SDL_Rect Rect;
+		SDL_Rect Rect;
 
-	const char* TileMapName;
+		const char* TileMapName;
 
-	Vector2 ClickedOnTile;
+		Vector2 ClickedOnTile;
 
-	Vector2 LocalPosition;
+		Vector2 LocalPosition;
 };
 
