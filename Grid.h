@@ -20,8 +20,6 @@ class Grid
 
 		float Sensitivity = 1;
 
-		float ZoomValue = 1;
-
 		float XOffset = 0;
 		float YOffset = 0;
 };

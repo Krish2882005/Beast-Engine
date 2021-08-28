@@ -35,9 +35,7 @@ void Grid::Update()
 		{
 			if (InputHandling::IsKeyDown(Keycode::LCtrl) || InputHandling::IsKeyDown(Keycode::RCtrl))
 			{
-				//DistanceBetweenGrid += Sensitivity;
-				ZoomValue += Sensitivity;
-				SDL_RenderSetScale(Init::Renderer, ZoomValue, ZoomValue);
+				DistanceBetweenGrid += Sensitivity;
 			}
 			else
 			{
@@ -48,9 +46,7 @@ void Grid::Update()
 		{
 			if (InputHandling::IsKeyDown(Keycode::LCtrl) || InputHandling::IsKeyDown(Keycode::RCtrl))
 			{
-				//DistanceBetweenGrid -= Sensitivity;
-				ZoomValue -= Sensitivity;
-				SDL_RenderSetScale(Init::Renderer, ZoomValue, ZoomValue);
+				DistanceBetweenGrid -= Sensitivity;
 			}
 			else
 			{
@@ -59,11 +55,11 @@ void Grid::Update()
 		}
 		if (InputHandling::IsKeyDown(Keycode::Right))
 		{
-			XOffset += Sensitivity;
+			XOffset -= Sensitivity;
 		}
 		if (InputHandling::IsKeyDown(Keycode::Left))
 		{
-			XOffset -= Sensitivity;
+			XOffset += Sensitivity;
 		}
 	}
 

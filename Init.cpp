@@ -19,7 +19,6 @@ constexpr int ScreenWidth = 1080;
 constexpr int ScreenHeight = 720;
 
 SDL_Renderer* Init::Renderer = nullptr;
-SDL_Window* Init::Window = nullptr;
 
 SDL_Event Init::Event;
 
