@@ -71,50 +71,6 @@ void BeastGui::FillRects(const SDL_Rect* Rects, int Count, SDL_Colour Colour)
 	SDL_SetRenderDrawColor(Init::Renderer, 0, 0, 0, 255);
 }
 
-void BeastGui::CreateErrorMessage(const char* ErrorSeverityLevel, const char* Error)
-{
-	//Position Should Be In The Center Of The Screen
-
-	if (strcmp(ErrorSeverityLevel, "Fatal"))
-	{
-		//Dont Allow Program To Resume
-	}
-	else
-	{
-		SDL_Texture* ErrorMessageResumeable = nullptr;
-
-		//Allow Program To Resume
-		ErrorMessageResumeable = TextureManager::Load("GuiImages\\ErrorMessage.png");
-		//TextureGuis.emplace_back("Error", GetGuiToken());
-
-		//Push Back To The Gui Vector
-	}
-}
-
-void BeastGui::DeleteGui()
-{
-}
-
-void BeastGui::RefreshGuiTokens()
-{
-
-}
-
-int BeastGui::GetGuiToken()
-{
-	return CurrentNumberOfToken++;
-}
-
-int BeastGui::GetNumberOfGuis()
-{
-	return 0;
-}
-
-void BeastGui::ClearAllGuis()
-{
-	
-}
-
 void BeastGui::Events()
 {
 
@@ -122,7 +78,7 @@ void BeastGui::Events()
 
 void BeastGui::Update()
 {
-	RefreshGuiTokens();
+	
 }
 
 void BeastGui::Draw()

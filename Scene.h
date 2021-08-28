@@ -35,6 +35,7 @@ class Scene
 		SDL_Rect SceneRect = { 200, 20, 680, 550 };
 
 		const char* Layer = "";
+
 	private:
 		Vector2 MousePosition;
 		bool IsMouseDown = false;

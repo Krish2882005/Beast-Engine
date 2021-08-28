@@ -63,9 +63,6 @@ Vector2 InputHandling::GetMouseGlobalPosition()
 	return MousePosition;
 }
 
-bool M_IsMouse1Down = false;
-bool M_IsMouse3Down = false;
-
 int InputHandling::GetMouseDown()
 {
 	//if (Init::Event.type == SDL_MOUSEBUTTONDOWN)
