@@ -4,7 +4,6 @@
 #include "BeastGui.h"
 #include "RenderText.h"
 #include "TextureManager.h"
-#include <iostream>
 
 RenderText* rendertext = new RenderText();
 
@@ -113,7 +112,7 @@ int BeastGui::GetNumberOfGuis()
 
 void BeastGui::ClearAllGuis()
 {
-	Guis.clear();
+	
 }
 
 void BeastGui::Events()
@@ -134,6 +133,4 @@ void BeastGui::Draw()
 void BeastGui::Clean()
 {
 	rendertext->Clean();
-	EssentialGuis.clear();
-	Guis.clear();
 }

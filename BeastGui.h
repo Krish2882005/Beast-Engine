@@ -68,9 +68,4 @@ private:
 	int WindowWidth = 1080;
 	int WindowHeight = 720;
 	SDL_Rect GuiPosition = { 0, 0, 0, 0 };
-
-	//Guis Such As The Menu Bar
-	std::vector<Gui> EssentialGuis;
-	std::vector<Gui> Guis;
-	std::vector<Texture> TextureGuis;
 };

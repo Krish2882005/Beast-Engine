@@ -47,24 +47,18 @@ private:
 
 	bool IsMouseDown = false;
 
-	//Scene Colour
-	SDL_Colour Colour = { 195, 195, 195, 255 };
-
-	SDL_Colour OutlineColour = { 127, 127, 127, 255 };
-
-	SDL_Rect OutlineRect;
+	SDL_Rect SceneOutlineRect;
+	SDL_Colour SceneColour = { 195, 195, 195, 255 };
+	SDL_Colour SceneOutlineColour = { 127, 127, 127, 255 };
 
 	const char* CurrentLayer = "";
 
 	//Text Base
-
 	SDL_Colour TextBaseColour = { 127, 127, 127, 255 };
 
 	SDL_Rect HierarchyTextBase;
 
 	SDL_Rect InspectorTextBase;
-
-	//Text
 
 	SDL_Colour TextColour = { 255, 255, 255, 255 };
 
@@ -75,7 +69,7 @@ private:
 	SDL_Texture* HierarchyTextTexture = nullptr;
 	SDL_Texture* InspectorTextTexture = nullptr;
 
-	//For Text Optimizing
+	//Updates Text When Position Has Changed
 	SDL_Rect OldHierarchyTextBase = { 1, 1, 1, 1 };
 	SDL_Rect OldInspectorTextBase = { 1, 1, 1, 1 };
 };

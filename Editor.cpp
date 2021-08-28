@@ -28,11 +28,15 @@ void Editor::Init()
 	OutlineToBeDrawn.push_back(FileViewerBase);
 
 	EditorTextRenderer->Init();
+
+	EditorGui->Init();
 }
 
 void Editor::Load()
 {
 	EditorTextRenderer->Load();
+
+	EditorGui->Load();
 }
 
 void Editor::Events()
@@ -81,7 +85,7 @@ void Editor::Draw()
 		RectsToArr[i] = Rects[i];
 	}
 
-	EditorGui->FillRects(RectsToArr, Rects.size(), Colour);
+	EditorGui->FillRects(RectsToArr, Rects.size(), SceneColour);
 
 	delete[] RectsToArr;
 
@@ -107,42 +111,42 @@ void Editor::DrawOutlines()
 
 	for (int i = 0; i < OutlineToBeDrawn.size(); i++)
 	{
-		OutlineRect.x = OutlineToBeDrawn[i].x;
-		OutlineRect.y = OutlineToBeDrawn[i].y;
-		OutlineRect.w = 5;
-		OutlineRect.h = OutlineToBeDrawn[i].h;
+		SceneOutlineRect.x = OutlineToBeDrawn[i].x;
+		SceneOutlineRect.y = OutlineToBeDrawn[i].y;
+		SceneOutlineRect.w = 5;
+		SceneOutlineRect.h = OutlineToBeDrawn[i].h;
 
-		OutlineRects.push_back(OutlineRect);
+		OutlineRects.push_back(SceneOutlineRect);
 	}
 
 	for (int i = 0; i < OutlineToBeDrawn.size(); i++)
 	{
-		OutlineRect.x = OutlineToBeDrawn[i].x;
-		OutlineRect.y = OutlineToBeDrawn[i].y;
-		OutlineRect.w = OutlineToBeDrawn[i].w;
-		OutlineRect.h = 5;
+		SceneOutlineRect.x = OutlineToBeDrawn[i].x;
+		SceneOutlineRect.y = OutlineToBeDrawn[i].y;
+		SceneOutlineRect.w = OutlineToBeDrawn[i].w;
+		SceneOutlineRect.h = 5;
 
-		OutlineRects.push_back(OutlineRect);
+		OutlineRects.push_back(SceneOutlineRect);
 	}
 
 	for (int i = 0; i < OutlineToBeDrawn.size(); i++)
 	{
-		OutlineRect.w = 5;
-		OutlineRect.x = OutlineToBeDrawn[i].x + OutlineToBeDrawn[i].w - OutlineRect.w;
-		OutlineRect.y = OutlineToBeDrawn[i].y;
-		OutlineRect.h = OutlineToBeDrawn[i].h;
+		SceneOutlineRect.w = 5;
+		SceneOutlineRect.x = OutlineToBeDrawn[i].x + OutlineToBeDrawn[i].w - SceneOutlineRect.w;
+		SceneOutlineRect.y = OutlineToBeDrawn[i].y;
+		SceneOutlineRect.h = OutlineToBeDrawn[i].h;
 
-		OutlineRects.push_back(OutlineRect);
+		OutlineRects.push_back(SceneOutlineRect);
 	}
 
 	for (int i = 0; i < OutlineToBeDrawn.size(); i++)
 	{
-		OutlineRect.x = OutlineToBeDrawn[i].x;
-		OutlineRect.h = 5;
-		OutlineRect.y = OutlineToBeDrawn[i].y + OutlineToBeDrawn[i].h - OutlineRect.h;
-		OutlineRect.w = OutlineToBeDrawn[i].w;
+		SceneOutlineRect.x = OutlineToBeDrawn[i].x;
+		SceneOutlineRect.h = 5;
+		SceneOutlineRect.y = OutlineToBeDrawn[i].y + OutlineToBeDrawn[i].h - SceneOutlineRect.h;
+		SceneOutlineRect.w = OutlineToBeDrawn[i].w;
 
-		OutlineRects.push_back(OutlineRect);
+		OutlineRects.push_back(SceneOutlineRect);
 	}
 
 	for (int i = 0; i < OutlineRects.size(); i++)
@@ -150,7 +154,7 @@ void Editor::DrawOutlines()
 		OutlineRectsToArr[i] = OutlineRects[i];
 	}
 
-	EditorGui->FillRects(OutlineRectsToArr, OutlineRects.size(), OutlineColour);
+	EditorGui->FillRects(OutlineRectsToArr, OutlineRects.size(), SceneOutlineColour);
 
 	delete[] OutlineRectsToArr;
 }
@@ -226,7 +230,7 @@ void Editor::DrawText()
 		InspectorTextTexture = EditorTextRenderer->CreateNewTextureCustom("Inspector", InspectorText, Raleway, TextColour);
 	}
 
-	
+
 	TextureManager::Draw(InspectorTextTexture, 0, &InspectorText);
 
 	SDL_SetRenderDrawBlendMode(Init::Renderer, SDL_BLENDMODE_NONE);

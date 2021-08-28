@@ -13,11 +13,13 @@
 #include "ErrorReporter.h"
 #include "BeastGui.h"
 #include "Editor.h"
+#include "InputHandling.h"
 
 constexpr int ScreenWidth = 1080;
 constexpr int ScreenHeight = 720;
 
 SDL_Renderer* Init::Renderer = nullptr;
+SDL_Window* Init::Window = nullptr;
 
 SDL_Event Init::Event;
 
@@ -95,7 +97,7 @@ void Init::Load()
 	editor->Load();
 
 	ErrorReporter::LogMessage("Info", "Loading GUI");
-	
+
 	beastgui->Load();
 
 	ErrorReporter::LogMessage("Info", "Successfully Loaded GUI");
@@ -137,7 +139,10 @@ void Init::Draw()
 
 	scene->Draw();
 
-	editor->Draw();
+	if (InputHandling::IsKeyDown(Keycode::A) == false)
+	{
+		editor->Draw();
+	}
 
 	SDL_RenderPresent(Renderer);
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include "Scene.h"
+#include "BeastGui.h"
 
 class Grid
 {
@@ -13,6 +14,14 @@ class Grid
 		void Clean();
 		float DistanceBetweenGrid = 16;
 	private:
-		float Sensitivity = 1;
 		Scene* scene = nullptr;
+
+		BeastGui GridGui;
+
+		float Sensitivity = 1;
+
+		float ZoomValue = 1;
+
+		float XOffset = 0;
+		float YOffset = 0;
 };

@@ -4,6 +4,7 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_image.h>
+#include "Vector2.h"
 
 class Init
 {
@@ -16,8 +17,8 @@ public:
 	void Clean();
 	inline bool IsRunning() { return m_IsRunning; }
 	static SDL_Renderer* Renderer;
+	static SDL_Window* Window;
 	static SDL_Event Event;
 private:
 	bool m_IsRunning = false;
-	SDL_Window* Window = nullptr;
 };
