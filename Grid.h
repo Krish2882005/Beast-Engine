@@ -16,7 +16,7 @@ class Grid
 	private:
 		Scene* scene = nullptr;
 
-		BeastGui GridGui;
+		BeastGui* GridGui = nullptr;
 
 		float Sensitivity = 1;
 

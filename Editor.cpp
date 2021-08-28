@@ -11,13 +11,16 @@
 #include "CollisionDetection.h"
 #include "RenderText.h"
 #include "TextureManager.h"
+#include <iostream>
 
-BeastGui* EditorGui = new BeastGui();
+BeastGui* EditorGui = nullptr;
 
 RenderText* EditorTextRenderer = new RenderText();
 
 void Editor::Init()
 {
+	EditorGui->GetInstance();
+
 	Rects.push_back(MenuBarBase);
 	Rects.push_back(HierarchyBase);
 	Rects.push_back(InspectorBase);
@@ -65,6 +68,14 @@ void Editor::Update()
 		else
 		{
 			CurrentLayer = "";
+		}
+	}
+
+	if (CollisionDetection::DetectCollision(MousePosition, HierarchyBase))
+	{
+		if (InputHandling::GetMouseDown() == 3)
+		{
+			std::cout << "Hello" << std::endl;
 		}
 	}
 }

@@ -26,8 +26,6 @@ Editor* editor = new Editor();
 
 Scene* scene = new Scene();
 
-BeastGui* beastgui = new BeastGui();
-
 void Init::Init_SDL2()
 {
 	ErrorReporter::Init();
@@ -64,12 +62,14 @@ void Init::Init_SDL2()
 
 		ErrorReporter::LogMessage("Info", "Initializing GUI");
 
+		/*
 		if (beastgui->Init() != 0)
 		{
 			ErrorReporter::LogMessage("Error", SDL_GetError());
 			m_IsRunning = false;
 			return;
 		}
+		*/
 
 		ErrorReporter::LogMessage("Info", "Initialized GUI");
 
@@ -97,7 +97,7 @@ void Init::Load()
 
 	ErrorReporter::LogMessage("Info", "Loading GUI");
 
-	beastgui->Load();
+	//beastgui->Load();
 
 	ErrorReporter::LogMessage("Info", "Successfully Loaded GUI");
 
@@ -151,8 +151,6 @@ void Init::Clean()
 	scene->Clean();
 
 	editor->Clean();
-
-	beastgui->Clean();
 
 	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);

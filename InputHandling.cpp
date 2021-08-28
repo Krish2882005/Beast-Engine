@@ -65,6 +65,16 @@ Vector2 InputHandling::GetMouseGlobalPosition()
 
 int InputHandling::GetMouseDown()
 {
+	if (Init::Event.type == SDL_MOUSEBUTTONDOWN)
+	{
+		return Init::Event.button.button;
+	}
+
+	return 0;
+}
+
+int InputHandling::GetMouse()
+{
 	//if (Init::Event.type == SDL_MOUSEBUTTONDOWN)
 	//{
 		return Init::Event.button.button;

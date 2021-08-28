@@ -163,6 +163,7 @@ public:
     static Vector2 GetMousePosition();
     static Vector2 GetMouseGlobalPosition();
     static int GetMouseDown();
+    static int GetMouse();
     static int GetMouseUp();
     static char* GetTextInput();
     static int GetMouseScroll();

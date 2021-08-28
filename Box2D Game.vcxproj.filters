@@ -72,6 +72,15 @@
     <ClCompile Include="Search.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BeastGuiDropDownMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BeastGuiDropDown.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BeastGuiFileImporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Init.h">
@@ -132,6 +141,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BeastGuiDropDownMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BeastGuiDropDown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BeastGuiFileImporter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

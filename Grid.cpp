@@ -7,12 +7,14 @@ void Grid::Init(Scene* GridScene)
 {
 	scene = GridScene;
 
-	GridGui.Init();
+	GridGui->GetInstance();
+
+	GridGui->Init();
 }
 
 void Grid::Load()
 {
-	GridGui.Load();
+	GridGui->Load();
 }
 
 void Grid::Events()
@@ -22,8 +24,6 @@ void Grid::Events()
 
 void Grid::Update()
 {
-	GridGui.Update();
-
 	if (InputHandling::GetMouseDown() == 3 && scene->Layer == "Scene")
 	{
 		DistanceBetweenGrid += InputHandling::GetMouseScroll();
@@ -84,8 +84,8 @@ void Grid::Draw()
 
 	SDL_Rect SceneRect = scene->SceneRect;
 
-	GridGui.DrawRect(&SceneRect, { 0, 0, 0, 255 });
-	GridGui.FillRect(&SceneRect, { 0, 0, 0, 255 });
+	GridGui->DrawRect(&SceneRect, { 0, 0, 0, 255 });
+	GridGui->FillRect(&SceneRect, { 0, 0, 0, 255 });
 
 	//Drawing The Scene Grid
 	int NumberOfRows = (SceneRect.w / DistanceBetweenGrid) + 1;
@@ -112,7 +112,7 @@ void Grid::Draw()
 	Rect.w = DistanceBetweenGrid;
 	Rect.h = DistanceBetweenGrid;
 
-	GridGui.DrawRect(&Rect, { 255, 255, 255, 255 });
+	GridGui->DrawRect(&Rect, { 255, 255, 255, 255 });
 
 	for (int i = 0; i < NumberOfRows; i++)
 	{
@@ -123,7 +123,7 @@ void Grid::Draw()
 
 		if (GridXCoordinate + XOffset >= SceneRect.x && GridXCoordinate + XOffset <= SceneRect.x + SceneRect.w)
 		{
-			GridGui.DrawLine(GridXCoordinate + XOffset, GridXCoordinate + XOffset, GridYCoordinate, GridYCoordinate + SceneRect.h - 1, { 255, 255, 255, 20 });
+			GridGui->DrawLine(GridXCoordinate + XOffset, GridXCoordinate + XOffset, GridYCoordinate, GridYCoordinate + SceneRect.h - 1, { 255, 255, 255, 20 });
 		}
 
 		AvailableRowsInLeft = XOffset / DistanceBetweenGrid;
@@ -146,7 +146,7 @@ void Grid::Draw()
 
 		if (NewGridXCoordinate + XOffset >= SceneRect.x && NewGridXCoordinate + XOffset <= SceneRect.x + SceneRect.w)
 		{
-			GridGui.DrawLine(NewGridXCoordinate + XOffset, NewGridXCoordinate + XOffset, GridYCoordinate, GridYCoordinate + SceneRect.h - 1, { 255, 255, 255, 20 });
+			GridGui->DrawLine(NewGridXCoordinate + XOffset, NewGridXCoordinate + XOffset, GridYCoordinate, GridYCoordinate + SceneRect.h - 1, { 255, 255, 255, 20 });
 		}
 
 		GridXCoordinate += DistanceBetweenGrid;
@@ -164,7 +164,7 @@ void Grid::Draw()
 
 		if (NewGridXCoordinate + XOffset >= SceneRect.x && NewGridXCoordinate + XOffset <= SceneRect.x + SceneRect.w)
 		{
-			GridGui.DrawLine(NewGridXCoordinate + XOffset, NewGridXCoordinate + XOffset, GridYCoordinate, GridYCoordinate + SceneRect.h - 1, { 255, 255, 255, 20 });
+			GridGui->DrawLine(NewGridXCoordinate + XOffset, NewGridXCoordinate + XOffset, GridYCoordinate, GridYCoordinate + SceneRect.h - 1, { 255, 255, 255, 20 });
 		}
 
 		GridXCoordinate += DistanceBetweenGrid;
@@ -190,7 +190,7 @@ void Grid::Draw()
 
 		if (GridYCoordinate + YOffset >= SceneRect.y && GridYCoordinate + YOffset <= SceneRect.y + SceneRect.h)
 		{
-			GridGui.DrawLine(GridXCoordinate, GridXCoordinate + SceneRect.w - 1, GridYCoordinate + YOffset, GridYCoordinate + YOffset, { 255, 255, 255, 20 });
+			GridGui->DrawLine(GridXCoordinate, GridXCoordinate + SceneRect.w - 1, GridYCoordinate + YOffset, GridYCoordinate + YOffset, { 255, 255, 255, 20 });
 		}
 
 		AvailableColumnsDown = YOffset / DistanceBetweenGrid;
@@ -213,7 +213,7 @@ void Grid::Draw()
 
 		if (NewGridYCoordinate + YOffset >= SceneRect.y && NewGridYCoordinate + YOffset <= SceneRect.y + SceneRect.h)
 		{
-			GridGui.DrawLine(GridXCoordinate, GridXCoordinate + SceneRect.w - 1, NewGridYCoordinate + YOffset, NewGridYCoordinate + YOffset, { 255, 255, 255, 20 });
+			GridGui->DrawLine(GridXCoordinate, GridXCoordinate + SceneRect.w - 1, NewGridYCoordinate + YOffset, NewGridYCoordinate + YOffset, { 255, 255, 255, 20 });
 		}
 
 		GridYCoordinate += DistanceBetweenGrid;
@@ -231,7 +231,7 @@ void Grid::Draw()
 
 		if (NewGridYCoordinate + YOffset >= SceneRect.y && NewGridYCoordinate + YOffset <= SceneRect.y + SceneRect.h)
 		{
-			GridGui.DrawLine(GridXCoordinate, GridXCoordinate + SceneRect.w - 1, NewGridYCoordinate + YOffset, NewGridYCoordinate + YOffset, { 255, 255, 255, 20 });
+			GridGui->DrawLine(GridXCoordinate, GridXCoordinate + SceneRect.w - 1, NewGridYCoordinate + YOffset, NewGridYCoordinate + YOffset, { 255, 255, 255, 20 });
 		}
 
 		GridYCoordinate += DistanceBetweenGrid;
@@ -243,5 +243,5 @@ void Grid::Draw()
 
 void Grid::Clean()
 {
-	GridGui.Clean();
+	
 }

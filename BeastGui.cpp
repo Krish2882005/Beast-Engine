@@ -4,6 +4,8 @@
 #include "BeastGui.h"
 #include "RenderText.h"
 #include "TextureManager.h"
+#include "CollisionDetection.h"
+#include "InputHandling.h"
 
 RenderText* rendertext = new RenderText();
 
@@ -73,12 +75,12 @@ void BeastGui::FillRects(const SDL_Rect* Rects, int Count, SDL_Colour Colour)
 
 void BeastGui::Events()
 {
-
+	
 }
 
 void BeastGui::Update()
 {
-	
+
 }
 
 void BeastGui::Draw()
@@ -88,5 +90,5 @@ void BeastGui::Draw()
 
 void BeastGui::Clean()
 {
-	rendertext->Clean();
+
 }

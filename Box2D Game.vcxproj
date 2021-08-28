@@ -158,6 +158,9 @@
   <ItemGroup>
     <ClCompile Include="BeastEngine.cpp" />
     <ClCompile Include="BeastGui.cpp" />
+    <ClCompile Include="BeastGuiDropDown.cpp" />
+    <ClCompile Include="BeastGuiDropDownMenu.cpp" />
+    <ClCompile Include="BeastGuiFileImporter.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
     <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Editor.cpp" />
@@ -178,6 +181,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BeastGui.h" />
+    <ClInclude Include="BeastGuiDropDown.h" />
+    <ClInclude Include="BeastGuiDropDownMenu.h" />
+    <ClInclude Include="BeastGuiFileImporter.h" />
     <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="Colour.h" />
     <ClInclude Include="Editor.h" />
